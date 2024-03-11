@@ -836,3 +836,362 @@ int main() {
 
 	save("stl.cpp");
 }
+
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-03-11 월요일 오후 5:33:43 
+===============================================================================
+// -------------------------------------------------------------------------------
+// 2024 1학기 STL 월910화78     3월 11일 월요일                              (2주1)
+// 
+// -------------------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+
+#include "save.h"
+
+using namespace std;
+
+
+//random_device rd;
+default_random_engine dre;		// 크기가 커서 전역변수로 한다
+uniform_int_distribution uid { 1000, 9999 };
+
+
+// [문제] 가장 큰 수를 찾아 화면에 출력한다.
+
+
+int main() {
+	int a[100];
+
+	for(int& num : a) {
+		num = uid(dre);
+		cout << format("{:8}", num);
+	}
+
+
+
+	int max = numeric_limits<int>::min();
+
+	for(int num : a) {
+		if(max < num) {
+			max = num;
+		}
+	}
+
+	cout << "최댓값 - " << max << endl;
+
+	cout << *std::max_element(a, a+100) << endl;
+	cout << *std::max_element(begin(a), end(a)) << endl;
+
+	save("stl.cpp");
+}
+
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-03-11 월요일 오후 5:35:26 
+===============================================================================
+// -------------------------------------------------------------------------------
+// 2024 1학기 STL 월910화78     3월 11일 월요일                              (2주1)
+// 
+// -------------------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+
+#include "save.h"
+
+using namespace std;
+
+
+//random_device rd;
+default_random_engine dre;		// 크기가 커서 전역변수로 한다
+uniform_int_distribution uid { 1000, 9999 };
+
+
+// [문제] 가장 큰 수를 찾아 화면에 출력한다.
+
+
+int main() {
+	int a[100];
+
+	for(int& num : a) {
+		num = uid(dre);
+		cout << format("{:8}", num);
+	}
+
+
+
+	int max = numeric_limits<int>::min();
+
+	for(int num : a) {
+		if(max < num) {
+			max = num;
+		}
+	}
+
+	cout << "최댓값 - " << max << endl;
+
+	cout << *std::max_element(a, a+100) << endl;
+	cout << *std::max_element(begin(a), end(a)) << endl;
+
+	save("stl.cpp");
+}
+
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-03-11 월요일 오후 5:37:21 
+===============================================================================
+// -------------------------------------------------------------------------------
+// 2024 1학기 STL 월910화78     3월 11일 월요일                              (2주1)
+// 
+// -------------------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include <print>
+
+#include "save.h"
+
+using namespace std;
+
+
+//random_device rd;
+default_random_engine dre;		// 크기가 커서 전역변수로 한다
+uniform_int_distribution uid { 1000, 9999 };
+
+
+// [문제] 가장 큰 수를 찾아 화면에 출력한다.
+
+
+int main() {
+	int a[100];
+
+	for(int& num : a) {
+		num = uid(dre);
+		cout << format("{:8}", num);
+		print("{:8}", num);
+	}
+
+
+
+	int max = numeric_limits<int>::min();
+
+	for(int num : a) {
+		if(max < num) {
+			max = num;
+		}
+	}
+
+	cout << "최댓값 - " << max << endl;
+
+	cout << *std::max_element(a, a+100) << endl;
+	cout << *std::max_element(begin(a), end(a)) << endl;
+
+	save("stl.cpp");
+}
+
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-03-11 월요일 오후 5:37:36 
+===============================================================================
+// -------------------------------------------------------------------------------
+// 2024 1학기 STL 월910화78     3월 11일 월요일                              (2주1)
+// 
+// -------------------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include <print>
+
+#include "save.h"
+
+using namespace std;
+
+
+//random_device rd;
+default_random_engine dre;		// 크기가 커서 전역변수로 한다
+uniform_int_distribution uid { 1000, 9999 };
+
+
+// [문제] 가장 큰 수를 찾아 화면에 출력한다.
+
+
+int main() {
+	int a[100];
+
+	for(int& num : a) {
+		num = uid(dre);
+		//cout << format("{:8}", num);
+		print("{:8}", num);
+	}
+
+
+
+	int max = numeric_limits<int>::min();
+
+	for(int num : a) {
+		if(max < num) {
+			max = num;
+		}
+	}
+
+	cout << "최댓값 - " << max << endl;
+
+	cout << *std::max_element(a, a+100) << endl;
+	cout << *std::max_element(begin(a), end(a)) << endl;
+
+	save("stl.cpp");
+}
+
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-03-11 월요일 오후 5:41:39 
+===============================================================================
+// -------------------------------------------------------------------------------
+// 2024 1학기 STL 월910화78     3월 11일 월요일                              (2주1)
+// 
+// -------------------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include <print>
+
+#include "save.h"
+
+using namespace std;
+
+
+//random_device rd;
+default_random_engine dre;		// 크기가 커서 전역변수로 한다
+uniform_int_distribution uid { 1000, 9999 };
+
+
+// [문제] 가장 큰 수를 찾아 화면에 출력한다.
+
+
+int main() {
+	int a[1000];
+
+	for(int& num : a) {
+		num = uid(dre);
+		//cout << format("{:8}", num);
+		print("{:8}", num);
+	}
+
+
+
+	int max = numeric_limits<int>::min();
+
+	for(int num : a) {
+		if(max < num) {
+			max = num;
+		}
+	}
+
+	cout << "최댓값 - " << max << endl;
+
+	cout << *std::max_element(a, a+1000) << endl;
+	cout << *std::max_element(begin(a), end(a)) << endl;
+
+	save("stl.cpp");
+}
+
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-03-11 월요일 오후 5:54:29 
+===============================================================================
+// -------------------------------------------------------------------------------
+// 2024 1학기 STL 월910화78     3월 11일 월요일                              (2주1)
+// 
+// -------------------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include <print>
+#include <algorithm>
+
+#include "save.h"
+
+using namespace std;
+
+
+//random_device rd;
+default_random_engine dre;		// 크기가 커서 전역변수로 한다
+uniform_int_distribution uid { 1000, 9999 };
+
+
+// [문제] 가장 큰 수를 찾아 화면에 출력한다.
+
+
+int main() {
+    int a[1000];
+
+	for(int& num : a) {
+		num = uid(dre);
+		print("{:8}", num);
+	}
+
+	cout << endl;
+
+	print("최댓값 - {}", *max_element(begin(a), end(a)));
+
+	save("stl.cpp");
+}
+
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-03-11 월요일 오후 5:59:08 
+===============================================================================
+// -------------------------------------------------------------------------------
+// 2024 1학기 STL 월910화78     3월 11일 월요일                              (2주1)
+// 
+// -------------------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include <print>
+#include <algorithm>
+
+#include "save.h"
+
+using namespace std;
+
+
+//random_device rd;
+default_random_engine dre;		// 크기가 커서 전역변수로 한다
+uniform_int_distribution uid { 1000, 9999 };
+
+
+// [문제] 가장 큰 수를 찾아 화면에 출력한다.
+
+
+int main() {
+    int a[1000];	// contiguous
+
+	for(int& num : a) {
+		num = uid(dre);
+		print("{:8}", num);
+	}
+
+	cout << endl;
+
+	print("최댓값 - {}", *max_element(begin(a), end(a)));
+
+	save("stl.cpp");
+}
