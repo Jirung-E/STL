@@ -7,9 +7,10 @@
 #include <fstream>
 #include <random>
 #include <format>
-#include <print>
 #include <algorithm>
+#include <print>
 #include <array>
+#include <list>
 
 #include "save.h"
 
@@ -18,24 +19,31 @@ using namespace std;
 
 //random_device rd;
 default_random_engine dre;		// 크기가 커서 전역변수로 한다
-uniform_int_distribution uid { 1000, 9999 };
+uniform_int_distribution uid { 0, 99'999 };
 
 
-// [문제] 가장 큰 수를 찾아 화면에 출력한다.
+// [문제] 파일 "int값들.txt"에는 몇 개인지 모르는 int가 저장되어있다. 
+// 모두 몇 개인지 출력하고 그 중에 가장 큰 값도 화면에 출력하라.
 
 
 int main() {
-	array<int, 100> a;
-	
-	for(int& num : a) {
-		num = uid(dre);
+	ifstream in { "int값들.txt" };
+	if(not in) {
+		exit(0);
 	}
 
-	// [문제] a에 있는 int값을 파일 "int값들.txt"에 기록하라
-	ofstream out { "int값들.txt" };
-	for(int num : a) {
-		out << num << endl;
+	int num;
+	int cnt {};
+	int max_value = numeric_limits<int>::min();
+	while(in >> num) {
+		++cnt;
+		if(max_value < num) {
+			max_value = num;
+		}
 	}
+
+	println("cnt: {}", cnt);
+	println("max: {}", max_value);
 
 	save("stl.cpp");
 }
