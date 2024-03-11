@@ -11,3 +11,13 @@
 템플릿 함수 -> 알고리즘
 클래스 -> 자료구조
 
+## 2주차 - 03/11
+### contiguous memory
+공간상 연속성   
+데이터를 가져올때 주변 데이터를 통으로 가져오기 때문에 빠르다.  
+T[N] 형식의 배열은 POD(Plain Old Data)  
+쓰지 마라!  
+array를 대신 써라
+
+### continuous memory
+시간적 연속성  

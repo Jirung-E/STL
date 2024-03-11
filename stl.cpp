@@ -4,10 +4,12 @@
 // -------------------------------------------------------------------------------
 
 #include <iostream>
+#include <fstream>
 #include <random>
 #include <format>
 #include <print>
 #include <algorithm>
+#include <array>
 
 #include "save.h"
 
@@ -23,16 +25,17 @@ uniform_int_distribution uid { 1000, 9999 };
 
 
 int main() {
-    int a[1000];	// contiguous
-
+	array<int, 100> a;
+	
 	for(int& num : a) {
 		num = uid(dre);
-		print("{:8}", num);
 	}
 
-	cout << endl;
-
-	print("최댓값 - {}", *max_element(begin(a), end(a)));
+	// [문제] a에 있는 int값을 파일 "int값들.txt"에 기록하라
+	ofstream out { "int값들.txt" };
+	for(int num : a) {
+		out << num << endl;
+	}
 
 	save("stl.cpp");
 }
