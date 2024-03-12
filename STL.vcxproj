@@ -131,7 +131,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="save.cpp" />
     <ClCompile Include="stl.cpp" />
   </ItemGroup>

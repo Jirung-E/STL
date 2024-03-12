@@ -1,6 +1,40 @@
-// -------------------------------------------------------------------------------
-// 2024 1í•™ê¸° STL ì›”910í™”78     3ì›” 12ì¼ í™”ìš”ì¼                              (2ì£¼2)
+// --------------------------------------------------------------------------------
+// 2024 1ÇĞ±â STL  ¿ù910È­78        3¿ù 12ÀÏ È­¿äÀÏ                            (2ÁÖ2)
 // 
-// -------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------
 
-int main() {}
+#include <iostream>
+#include <print>
+#include <random>
+#include <array>
+
+#include "save.h"
+
+using namespace std;
+
+
+default_random_engine dre;
+uniform_int_distribution<> uidChar { 'a', 'z' };
+uniform_int_distribution<> uidNum { 1, 99'999 };
+
+
+class Dog {
+    char c { (char)uidChar(dre) };
+    int num { uidNum(dre) };
+
+public:
+    friend ostream& operator<<(ostream& os, const Dog& dog) {
+        return os << "±ÛÀÚ: " << dog.c << ", ¼ıÀÚ: " << dog.num;
+    }
+};
+
+
+int main() {
+    array<Dog, 100> dogs;
+
+    for(const Dog& dog : dogs) {
+        cout << dog << endl;
+    }
+
+    save("stl.cpp");
+}
