@@ -1,32 +1,6 @@
 // -------------------------------------------------------------------------------
-// 2024 1ÇĞ±â STL ¿ù910È­78     3¿ù 11ÀÏ ¿ù¿äÀÏ                              (2ÁÖ1)
+// 2024 1í•™ê¸° STL ì›”910í™”78     3ì›” 12ì¼ í™”ìš”ì¼                              (2ì£¼2)
 // 
 // -------------------------------------------------------------------------------
 
-#include <print>
-
-#include "save.h"
-
-using namespace std;
-
-
-template<typename T, size_t size>
-class Array {
-	T arr[size];
-
-public:
-	T& operator[](size_t index) {
-		return arr[index];
-	}
-};
-
-int main() {
-	Array<int, 100> arr;
-
-	println("Array<int, 100> size: {}", sizeof(arr));
-	println("arr[10]: {}", arr[0]);
-
-	save("stl.cpp");
-}
-
-
+int main() {}
