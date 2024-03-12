@@ -5,7 +5,6 @@
 
 #include <iostream>
 #include <fstream>
-#include <print>
 #include <random>
 #include <array>
 
