@@ -2233,3 +2233,194 @@ int main() {
 
     save("stl.cpp");
 }
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-03-18 월요일 오후 6:35:55 
+===============================================================================
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        3월 12일 화요일                            (2주2)
+// 
+// --------------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <array>
+
+#include "save.h"
+
+using namespace std;
+
+// [문제] "dogs" 파일은 binary모드로 기록하였다. 
+// 여기에는 class Dog객체 100개를 write함수를 사용하여 기록하였다.
+// class Dog의 멤버는 다음과 같다.
+// 파일을 읽어 num값이 가장 큰 Dog 객체를 화면에 출력하라.
+
+class Dog {
+    char c;
+    int num;
+
+public:
+    bool operator<(const Dog& other) {
+        return num < other.num;
+    }
+
+    int getNum() const {
+        return num;
+    }
+
+    void show() const {
+        cout << "Dog: { " << c << ", " << num << " }" << endl;
+    }
+
+    //friend istream& operator>>(istream& in, Dog& dog) {
+    //    return in.read((char*)&dog, sizeof(Dog));
+    //}
+};
+
+
+int main() {
+    ifstream in { "dogs", ios::binary };
+    if(not in) {
+        cout << "파일을 열 수 없다." << endl;
+        return 0;
+    }
+
+    array<Dog, 100> dogs;
+    in.read((char*)dogs.data(), sizeof(dogs));
+
+    Dog maxDog;
+    int maxValue { numeric_limits<int>::min() };
+    for(const Dog& dog : dogs) {
+        if(maxValue < dog.getNum()) {
+            maxDog = dog;
+            maxValue = dog.getNum();
+        }
+    }
+    maxDog.show();
+
+    max_element(dogs.begin(), dogs.end())->show();
+    auto pos = max_element(
+        dogs.begin(), dogs.end(),
+        [](const Dog& a, const Dog& b) {
+            return a.getNum() < b.getNum();
+        }
+    );
+    pos->show();
+
+    save("stl.cpp");
+}
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-03-18 월요일 오후 6:36:51 
+===============================================================================
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        3월 12일 화요일                            (2주2)
+// 
+// --------------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <array>
+
+#include "save.h"
+
+using namespace std;
+
+// [문제] "dogs" 파일은 binary모드로 기록하였다. 
+// 여기에는 class Dog객체 100개를 write함수를 사용하여 기록하였다.
+// class Dog의 멤버는 다음과 같다.
+// 파일을 읽어 num값이 가장 큰 Dog 객체를 화면에 출력하라.
+
+class Dog {
+    char c;
+    int num;
+
+public:
+    int getNum() const {
+        return num;
+    }
+
+    void show() const {
+        cout << "Dog: { " << c << ", " << num << " }" << endl;
+    }
+};
+
+
+int main() {
+    ifstream in { "dogs", ios::binary };
+    if(not in) {
+        cout << "파일을 열 수 없다." << endl;
+        return 0;
+    }
+
+    array<Dog, 100> dogs;
+    in.read((char*)dogs.data(), sizeof(dogs));
+
+    auto pos = max_element(
+        dogs.begin(), dogs.end(),
+        [](const Dog& a, const Dog& b) {
+            return a.getNum() < b.getNum();
+        }
+    );
+    pos->show();
+
+    save("stl.cpp");
+}
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-03-18 월요일 오후 6:50:02 
+===============================================================================
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        3월 12일 화요일                            (2주2)
+// 
+// --------------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <array>
+#include <algorithm>
+
+#include "save.h"
+
+using namespace std;
+
+// [문제] "dogs" 파일은 binary모드로 기록하였다. 
+// 여기에는 class Dog객체 100개를 write함수를 사용하여 기록하였다.
+// class Dog의 멤버는 다음과 같다.
+// 파일을 읽어 num값이 1000미만인 Dog객체의 수를 출력하라.
+
+class Dog {
+    char c;
+    int num;
+
+public:
+    int getNum() const {
+        return num;
+    }
+
+    void show() const {
+        cout << "Dog: { " << c << ", " << num << " }" << endl;
+    }
+};
+
+
+int main() {
+    ifstream in { "dogs", ios::binary };
+    if(not in) {
+        cout << "파일을 열 수 없다." << endl;
+        return 0;
+    }
+
+    array<Dog, 100> dogs;
+    in.read((char*)dogs.data(), sizeof(dogs));
+
+    int count = count_if(dogs.begin(), dogs.end(), [](const Dog& d) {
+        return d.getNum() < 1000;
+    });
+    cout << count << endl;
+
+    save("stl.cpp");
+}

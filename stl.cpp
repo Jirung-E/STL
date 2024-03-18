@@ -5,32 +5,29 @@
 
 #include <iostream>
 #include <fstream>
-#include <list>
+#include <array>
+#include <algorithm>
 
 #include "save.h"
 
 using namespace std;
 
 // [문제] "dogs" 파일은 binary모드로 기록하였다. 
-// 여기에는 몇개인지 모르는 class Dog객체를 write함수를 사용하여 기록하였다.
+// 여기에는 class Dog객체 100개를 write함수를 사용하여 기록하였다.
 // class Dog의 멤버는 다음과 같다.
-// 파일을 읽어 num값이 가장 큰 Dog 객체를 화면에 출력하라.
+// 파일을 읽어 num값이 1000미만인 Dog객체의 수를 출력하라.
 
 class Dog {
     char c;
     int num;
 
 public:
-    bool operator<(const Dog& other) {
-        return num < other.num;
+    int getNum() const {
+        return num;
     }
 
     void show() const {
         cout << "Dog: { " << c << ", " << num << " }" << endl;
-    }
-
-    friend istream& operator>>(istream& in, Dog& dog) {
-        return in.read((char*)&dog, sizeof(Dog));
     }
 };
 
@@ -42,15 +39,13 @@ int main() {
         return 0;
     }
 
-    list<Dog> dogs {};
-    Dog dog;
-    while(in >> dog) {
-        dogs.push_back(dog);
-    }
+    array<Dog, 100> dogs;
+    in.read((char*)dogs.data(), sizeof(dogs));
 
-    cout << dogs.size() << endl;
-    dog.show();
-    max_element(dogs.begin(), dogs.end())->show();
+    int count = count_if(dogs.begin(), dogs.end(), [](const Dog& dog) {
+        return 1000 > dog.getNum();
+    });
+    cout << count << endl;
 
     //save("stl.cpp");
 }
