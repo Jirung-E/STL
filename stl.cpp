@@ -5,45 +5,52 @@
 
 #include <iostream>
 #include <fstream>
-#include <random>
-#include <array>
+#include <list>
 
 #include "save.h"
 
 using namespace std;
 
-
-default_random_engine dre;
-uniform_int_distribution<> uidChar { 'a', 'z' };
-uniform_int_distribution<> uidNum { 1, 99'999 };
-
+// [문제] "dogs" 파일은 binary모드로 기록하였다. 
+// 여기에는 몇개인지 모르는 class Dog객체를 write함수를 사용하여 기록하였다.
+// class Dog의 멤버는 다음과 같다.
+// 파일을 읽어 num값이 가장 큰 Dog 객체를 화면에 출력하라.
 
 class Dog {
-    char c { (char)uidChar(dre) };
-    int num { uidNum(dre) };
+    char c;
+    int num;
 
 public:
-    bool operator<(const Dog& dog) const {
-        return num < dog.num;
+    bool operator<(const Dog& other) {
+        return num < other.num;
     }
 
-    friend ostream& operator<<(ostream& os, const Dog& dog) {
-        return os << "글자: " << dog.c << ", 숫자: " << dog.num;
+    void show() const {
+        cout << "Dog: { " << c << ", " << num << " }" << endl;
+    }
+
+    friend istream& operator>>(istream& in, Dog& dog) {
+        return in.read((char*)&dog, sizeof(Dog));
     }
 };
 
 
 int main() {
-    // [문제] dogs를 binary mod/write로 파일에 기록하라.
-    //ofstream out { "dogs", ios::binary };
-    //out.write((const char*)dogs.data(), sizeof(dogs));
-    
-    // 기록된 파일을 읽어서 num값이 가장 큰 Dog를 찾아 화면에 출력하라.
-    array<Dog, 100> dogs;
     ifstream in { "dogs", ios::binary };
-    in.read((char*)dogs.data(), sizeof(dogs));
+    if(not in) {
+        cout << "파일을 열 수 없다." << endl;
+        return 0;
+    }
 
-    cout << *max_element(dogs.begin(), dogs.end()) << endl;
+    list<Dog> dogs {};
+    Dog dog;
+    while(in >> dog) {
+        dogs.push_back(dog);
+    }
 
-    save("stl.cpp");
+    cout << dogs.size() << endl;
+    dog.show();
+    max_element(dogs.begin(), dogs.end())->show();
+
+    //save("stl.cpp");
 }
