@@ -1,6 +1,7 @@
 // --------------------------------------------------------------------------------
-// 2024 1학기 STL  월910화78        3월 12일 화요일                            (2주2)
+// 2024 1학기 STL  월910화78        3월 18일 월요일                            (3주1)
 // 
+// 실행 파일의 메모리 영역 - STACK, CODE, DATA, Free store(heap)
 // --------------------------------------------------------------------------------
 
 #include <iostream>
@@ -15,7 +16,7 @@ using namespace std;
 // [문제] "dogs" 파일은 binary모드로 기록하였다. 
 // 여기에는 class Dog객체 100개를 write함수를 사용하여 기록하였다.
 // class Dog의 멤버는 다음과 같다.
-// 파일을 읽어 num값이 1000미만인 Dog객체의 수를 출력하라.
+// 파일을 읽어 num값이 홀수인 Dog객체의 수를 출력하라.
 
 class Dog {
     char c;
@@ -43,9 +44,9 @@ int main() {
     in.read((char*)dogs.data(), sizeof(dogs));
 
     int count = count_if(dogs.begin(), dogs.end(), [](const Dog& dog) {
-        return 1000 > dog.getNum();
+        return dog.getNum() % 2;
     });
     cout << count << endl;
 
-    //save("stl.cpp");
+    save("stl.cpp");
 }
