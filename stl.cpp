@@ -11,19 +11,19 @@
 
 using namespace std;
 
+// [문제] 프로그램에서 이용할 수 있는 전역변수의 최대크기는?
 
-void f() {
-    int num { 123 };
-}
+int num[1'0000'0000] { 1 };   // 이걸 해줬더니 380~390MB가 나온다.
 
-int gnum {};
 
 int main() {
-    string s { "메모리 관찰" };
+    //num[9999'9999] = 1234567890;
 
-    f();
+    cout << num[9999'9999] << endl;     // 사용 안하는 데이터는 무시하는 최적화가 적용됨. 실행파일은 몇kb밖에 안된다.
 
-    string* p = new string[2];
+    cout << "키를 누르면 프로그램 끝 - ";
+    char c;
+    cin >> c;
 
-    //save("stl.cpp");
+    save("stl.cpp");
 }
