@@ -76,4 +76,6 @@ fetch -> decode -> execute   ->   writeback
 메모리 용량을 초과한 메모리 할당을 할때  
 
 - RAII(Resource Acquisition Is Initialization)  
-- Stack unwinding  
+  > RAII idiom - 메모리, 파일, jthread  
+- Stack unwinding    
+https://www.youtube.com/watch?v=Rfu06XAhx90&ab_channel=CppCon  
