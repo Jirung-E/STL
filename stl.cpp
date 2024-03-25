@@ -1,29 +1,59 @@
 // --------------------------------------------------------------------------------
-// 2024 1학기 STL  월910화78        3월 19일 화요일                            (3주2)
+// 2024 1학기 STL  월910화78        3월 25일 월요일                            (4주1)
 // 
-// 실행 파일의 메모리 영역 - STACK, CODE, DATA, Free store(heap)
+// 동적할당 - RAII
+// 
+// 앞으로 C++에서 사용하지 않아야 할 것들
+// char*        -> string
+// T[N]         -> array<T, N>
+// T*           -> unique_ptr<T>, shared_ptr<T>
 // --------------------------------------------------------------------------------
 
 #include <iostream>
-#include <string>
 
 #include "save.h"
 
 using namespace std;
 
-// [문제] 프로그램에서 이용할 수 있는 전역변수의 최대크기는?
+class Dog {
+public:
+    Dog() { cout << "생성" << endl; };
+    ~Dog() { cout << "소멸" << endl; };
+};
 
-int num[1'0000'0000] { 1 };   // 이걸 해줬더니 380~390MB가 나온다.
+template<typename T>
+class Smart_ptr {
+    T* p;
+
+public:
+    Smart_ptr(T* p) : p { p } {}
+    ~Smart_ptr() { delete p; }
+};
+
+
+void f() {
+    cout << "f 시작" << endl;
+
+    // 지역변수와 힙에 할당된 변수를 연결, 블럭을 나갈때 자동으로 소멸자 호출
+    Smart_ptr<Dog> d { new Dog };
+
+    throw 1234;
+    
+    cout << "f 끝" << endl;
+}
 
 
 int main() {
-    //num[9999'9999] = 1234567890;
+    cout << "main 시작" << endl;
 
-    cout << num[9999'9999] << endl;     // 사용 안하는 데이터는 무시하는 최적화가 적용됨. 실행파일은 몇kb밖에 안된다.
+    try {
+        f();
+    }
+    catch(...) {
+        cout << "예외가 발생했어요" << endl;
+    }
 
-    cout << "키를 누르면 프로그램 끝 - ";
-    char c;
-    cin >> c;
+    cout << "main 끝" << endl;
 
-    save("stl.cpp");
+    //save("stl.cpp");
 }

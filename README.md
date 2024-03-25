@@ -66,3 +66,14 @@ fetch -> decode -> execute   ->   writeback
 근데 하나라도 초기화하면 메모리image를 캡쳐해서	실행파일에 저장하고,  
 실행시 이 이미지를 그대로 DATA영역에 저장한다.  
 그니까 전역변수 초기화는 왠만하면 하지 마라.  
+
+
+## 4주차 - 03/25
+메모리 매니저가 메모리 할당을 관리한다.  
+메모리가 잡혀있는건지 링크드리스트로 표시  
+단편화  
+
+메모리 용량을 초과한 메모리 할당을 할때  
+
+- RAII(Resource Acquisition Is Initialization)  
+- Stack unwinding  
