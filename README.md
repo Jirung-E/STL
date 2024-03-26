@@ -78,4 +78,10 @@ fetch -> decode -> execute   ->   writeback
 - RAII(Resource Acquisition Is Initialization)  
   > RAII idiom - 메모리, 파일, jthread  
 - Stack unwinding    
+  > 예외가 발생하더라도 자원을 해제한다.   
+
 https://www.youtube.com/watch?v=Rfu06XAhx90&ab_channel=CppCon  
+
+## 4주차 - 03/26
+ostreambuf_iterator, istreambuf_iterator  
+qsort: C함수이지만 제네릭  

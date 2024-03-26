@@ -1,59 +1,40 @@
 // --------------------------------------------------------------------------------
-// 2024 1학기 STL  월910화78        3월 25일 월요일                            (4주1)
+// 2024 1학기 STL  월910화78        3월 26일 월요일                            (4주2)
 // 
-// 동적할당 - RAII
-// 
-// 앞으로 C++에서 사용하지 않아야 할 것들
-// char*        -> string
-// T[N]         -> array<T, N>
-// T*           -> unique_ptr<T>, shared_ptr<T>
+// 5월 6일 월요일 강의 함
 // --------------------------------------------------------------------------------
 
-#include <iostream>
+#include <print>
+#include <random>
+#include <array>
 
 #include "save.h"
 
 using namespace std;
 
-class Dog {
-public:
-    Dog() { cout << "생성" << endl; };
-    ~Dog() { cout << "소멸" << endl; };
-};
 
-template<typename T>
-class Smart_ptr {
-    T* p;
-
-public:
-    Smart_ptr(T* p) : p { p } {}
-    ~Smart_ptr() { delete p; }
-};
+uniform_int_distribution uid { 1, 1'000 };
+default_random_engine dre;
 
 
-void f() {
-    cout << "f 시작" << endl;
-
-    // 지역변수와 힙에 할당된 변수를 연결, 블럭을 나갈때 자동으로 소멸자 호출
-    Smart_ptr<Dog> d { new Dog };
-
-    throw 1234;
-    
-    cout << "f 끝" << endl;
-}
+// [문제] [10'000, 99'999]범위의 값을 갖는 int 100개를 만들어 주세요.
+// qsort를 사용하여 오름차순으로 정렬하세요.
+// 정렬한 결과를 화면에 보여주세요.  
 
 
 int main() {
-    cout << "main 시작" << endl;
+    array<int, 100> arr;
+    generate(arr.begin(), arr.end(), []() { return uid(dre); });
 
-    try {
-        f();
+    qsort(arr.data(), arr.size(), sizeof(int),
+        [](const void* x, const void* y) {
+            return *(int*)x - *(int*)y;
+        }
+    );
+
+    for(auto e : arr) {
+        print("{:8}", e);
     }
-    catch(...) {
-        cout << "예외가 발생했어요" << endl;
-    }
 
-    cout << "main 끝" << endl;
-
-    save("stl.cpp");
+    //save("stl.cpp");
 }

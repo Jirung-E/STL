@@ -1,0 +1,36 @@
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        3월 26일 월요일                            (4주2)
+// 
+// 5월 6일 월요일 강의 함
+// --------------------------------------------------------------------------------
+
+#INCLUDE <IOSTREAM>
+#INCLUDE <FSTREAM>
+#INCLUDE <ALGORITHM>
+
+#INCLUDE "SAVE.H"
+
+USING NAMESPACE STD;
+
+
+// [문제] "STL.CPP"의 모든 소문자를 대문자로 바꿔 "STL대문자.TXT"에 저장하라.
+
+
+INT MAIN() {
+    IFSTREAM IN { "STL.CPP" };
+    IF(NOT IN) {
+        COUT << "파일을 불러오지 못했습니다." << ENDL;
+        RETURN 33333333;
+    }
+
+    OFSTREAM OUT { "STL대문자.TXT" };
+
+    TRANSFORM(ISTREAMBUF_ITERATOR<CHAR>{IN}, {},
+              OSTREAMBUF_ITERATOR<CHAR>{OUT}, 
+              [](CHAR C) { 
+                  RETURN C = TOUPPER(C); 
+              }
+    );
+
+    SAVE("STL.CPP");
+}
