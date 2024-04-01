@@ -102,3 +102,26 @@ public:
 ```
 이러한 객체는 함수 호출처럼 사용할 수 있지만 상태를 가질 수 있다.  
 함수형 언어에서는 이러한 형태는 지양된다.  
+
+callable type - 무한한 타입이 있다.  
+1. 함수 포인터
+2. 람다
+3. ()연산자(function call operator)를 오버로딩한 클래스의 객체  
+셋다 코드영역에 있다.(3의 경우 객체의 ()연산자)
+
+```cpp
+class lambda {      // mangling됨
+public:
+    void operator()() {
+        cout << "람다의 정체? (vs에서는)function object" << endl;
+    }
+};
+```
+
+이 다양한 타입들을 호환되게 하기 위해 function을 만들었다.  
+function은 호출 가능한 타입을 대표한다.  
+```cpp
+void f(function<bool(int, int)> x) {
+    cout << x(3, 5) << endl;
+}
+```
