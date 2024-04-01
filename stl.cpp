@@ -17,17 +17,21 @@ using namespace std;
 
 class String {
     size_t len {};
-    unique_ptr<char[]> str;
+    unique_ptr<char[]> p;
 
 public:
     String(const char* str) : len { strlen(str) } {
-        this->str = make_unique<char[]>(len);
-        memcpy(this->str.get(), str, len);
+        p = make_unique<char[]>(len);
+        memcpy(p.get(), str, len);
+    }
+
+    String(const String& s) : String { s.p.get() } {
+
     }
 
     friend ostream& operator<<(ostream& out, const String& s) {
         for(size_t i=0; i<s.len; ++i) {
-            out << s.str.get()[i];
+            out << s.p.get()[i];
         }
         return out;
     }
