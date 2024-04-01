@@ -84,4 +84,21 @@ https://www.youtube.com/watch?v=Rfu06XAhx90&ab_channel=CppCon
 
 ## 4주차 - 03/26
 ostreambuf_iterator, istreambuf_iterator  
-qsort: C함수이지만 제네릭  
+qsort: C함수이지만 제네릭 
+
+## 5주차	 - 04/01
+NlogN 에서 log는 2를 밑으로 하는 로그  
+함수호출 연산자 function call operator: operator()
+```cpp
+class Dog {
+    int m;
+
+public:
+    bool operator()(int a, int b) {
+        m++;
+        return a > b;
+    }
+};
+```
+이러한 객체는 함수 호출처럼 사용할 수 있지만 상태를 가질 수 있다.  
+함수형 언어에서는 이러한 형태는 지양된다.  

@@ -3597,3 +3597,298 @@ int main() {
 
     save("stl.cpp");
 }
+
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-04-01 월요일 오후 5:40:28 
+===============================================================================
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        4월 1일 월요일                            (5주1)
+// 
+// 5월 6일 월요일 강의 함
+// 4월 23일 시험
+// 
+// callable type
+// sort할때 어떤 기준으로 정렬할지를 어떻게 sort함수에게 알려주나?
+// 1. 함수 포인터를 전달한다.
+// 2. 람다를 전달한다.
+// --------------------------------------------------------------------------------
+
+#include <print>
+#include <random>
+#include <array>
+
+#include "save.h"
+
+using namespace std;
+
+
+uniform_int_distribution uid { 1, 1'000 };
+default_random_engine dre;
+
+array<int, 100> a;
+
+
+// [문제] [1, 1'000]범위의 값을 갖는 int 100개를 만들어 주세요.
+// std::sort를 사용하여 오름차순으로 정렬하세요.
+// 정렬한 결과를 화면에 보여주세요.  
+
+
+int main() {
+    generate(a.begin(), a.end(), []() { return uid(dre); });
+
+    println("generated");
+    for(int num : a) {
+        print("{:8}", num);
+    }
+
+    sort(a.begin(), a.end(), [](int a, int b) { return a > b; });
+    
+    println("sorted");
+    for(int num : a) {
+        print("{:8}", num);
+    }
+
+    save("stl.cpp");
+}
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-04-01 월요일 오후 5:53:51 
+===============================================================================
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        4월 1일 월요일                            (5주1)
+// 
+// 5월 6일 월요일 강의 함
+// 4월 23일 시험
+// 
+// callable type
+// sort할때 어떤 기준으로 정렬할지를 어떻게 sort함수에게 알려주나?
+// 1. 함수 포인터를 전달한다.
+// 2. 람다를 전달한다.
+// --------------------------------------------------------------------------------
+
+#include <iostream>
+#include <print>
+#include <random>
+#include <array>
+
+#include "save.h"
+
+using namespace std;
+
+
+uniform_int_distribution uid { 1, 1'000 };
+default_random_engine dre;
+
+array<int, 10000> a;
+int cnt;
+
+
+// [문제] [1, 1'000]범위의 값을 갖는 int 100개를 만들어 주세요.
+// std::sort를 사용하여 오름차순으로 정렬하세요.
+// 정렬한 결과를 화면에 보여주세요.  
+
+
+int main() {
+    generate(a.begin(), a.end(), []() { return uid(dre); });
+
+    println("generated");
+    for(int num : a) {
+        print("{:8}", num);
+    }
+
+    sort(a.begin(), a.end(), [](int a, int b) { 
+        //cout << a << "<->" << b << endl;
+        cnt++;
+        return a > b; 
+    });
+    
+    println("sorted");
+    for(int num : a) {
+        print("{:8}", num);
+    }
+
+    cout << "sort의 비교함수 호출 - " << cnt << endl;
+
+    save("stl.cpp");
+}
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-04-01 월요일 오후 5:58:22 
+===============================================================================
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        4월 1일 월요일                            (5주1)
+// 
+// 5월 6일 월요일 강의 함
+// 4월 23일 시험
+// 
+// callable type
+// sort할때 어떤 기준으로 정렬할지를 어떻게 sort함수에게 알려주나?
+// 1. 함수 포인터를 전달한다.
+// 2. 람다를 전달한다.
+// --------------------------------------------------------------------------------
+
+#include <iostream>
+#include <print>
+#include <random>
+#include <array>
+
+#include "save.h"
+
+using namespace std;
+
+
+uniform_int_distribution uid { 1, 1'000 };
+default_random_engine dre;
+
+array<int, 100> a;
+
+
+// [문제] [1, 1'000]범위의 값을 갖는 int 100개를 만들어 주세요.
+// std::sort를 사용하여 오름차순으로 정렬하세요.
+// 정렬한 결과를 화면에 보여주세요.  
+
+
+int main() {
+    generate(a.begin(), a.end(), []() { return uid(dre); });
+
+    println("generated");
+    for(int num : a) {
+        print("{:8}", num);
+    }
+
+    sort(a.begin(), a.end(), [](auto a, auto b) { return a > b; });
+    
+    println("sorted");
+    for(int num : a) {
+        print("{:8}", num);
+    }
+
+    save("stl.cpp");
+}
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-04-01 월요일 오후 6:06:56 
+===============================================================================
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        4월 1일 월요일                            (5주1)
+// 
+// 5월 6일 월요일 강의 함
+// 4월 23일 시험
+// 
+// callable type
+// sort할때 어떤 기준으로 정렬할지를 어떻게 sort함수에게 알려주나?
+// 1. 함수 포인터를 전달한다.
+// 2. 람다를 전달한다.
+// --------------------------------------------------------------------------------
+
+#include <iostream>
+#include <print>
+#include <random>
+#include <array>
+
+#include "save.h"
+
+using namespace std;
+
+
+// [문제] [1, 1'000]범위의 값을 갖는 int 100개를 만들어 주세요.
+// std::sort를 사용하여 오름차순으로 정렬하세요.
+// 정렬한 결과를 화면에 보여주세요.  
+
+uniform_int_distribution uid { 1, 1'000 };
+default_random_engine dre;
+
+array<int, 100> a;
+
+class Dog {
+public:
+    bool operator()(int a, int b) {
+        return a > b;
+    }
+};
+
+
+int main() {
+    generate(a.begin(), a.end(), []() { return uid(dre); });
+
+    println("generated");
+    for(int num : a) {
+        print("{:8}", num);
+    }
+
+    Dog dog;
+    sort(a.begin(), a.end(), dog);
+    
+    println("sorted");
+    for(int num : a) {
+        print("{:8}", num);
+    }
+
+    save("stl.cpp");
+}
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-04-01 월요일 오후 6:14:20 
+===============================================================================
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        4월 1일 월요일                            (5주1)
+// 
+// 5월 6일 월요일 강의 함
+// 4월 23일 시험
+// 
+// callable type
+// sort할때 어떤 기준으로 정렬할지를 어떻게 sort함수에게 알려주나?
+// 1. 함수 포인터를 전달한다.
+// 2. 람다를 전달한다.
+// --------------------------------------------------------------------------------
+
+#include <iostream>
+#include <print>
+#include <random>
+#include <array>
+
+#include "save.h"
+
+using namespace std;
+
+
+// [문제] [1, 1'000]범위의 값을 갖는 int 100개를 만들어 주세요.
+// std::sort를 사용하여 오름차순으로 정렬하세요.
+// 정렬한 결과를 화면에 보여주세요.  
+
+uniform_int_distribution uid { 1, 1'000 };
+default_random_engine dre;
+
+array<int, 100> a;
+
+class Dog {
+public:
+    bool operator()(int a, int b) {
+        return a > b;
+    }
+};
+
+
+int main() {
+    generate(a.begin(), a.end(), []() { return uid(dre); });
+
+    println("generated");
+    for(int num : a) {
+        print("{:8}", num);
+    }
+
+    sort(a.begin(), a.end(), Dog {});
+    
+    println("sorted");
+    for(int num : a) {
+        print("{:8}", num);
+    }
+
+    save("stl.cpp");
+}
