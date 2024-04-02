@@ -100,6 +100,6 @@ size_t String::getLen() const {
     return len;
 }
 
-char* String::data() const {
+char* String::getMem() const {
     return p.get();
 }

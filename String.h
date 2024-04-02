@@ -36,7 +36,7 @@ public:
 
 public:
     size_t getLen() const;
-    char* data() const;
+    char* getMem() const;
 
 public:
     friend std::ostream& operator<<(std::ostream& out, const String& s) {

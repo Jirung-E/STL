@@ -35,13 +35,16 @@ int main() {
     // [문제] sort를 사용하여 a가 관리하는 String을 오름차순으로 정렬한 후 출력하라
 
     for(String& s : a) {
-        auto start = s.data();
+        auto start = s.getMem();
         sort(start, start + s.getLen());
+        //sort(start, start + s.getLen(), [](char a, char b) {
+        //    return a > b;
+        //});
     }
     
     for(const String& s : a) {
         cout << s << endl;
     }
 
-    //save("stl.cpp");
+    save("stl.cpp");
 }
