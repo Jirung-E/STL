@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------
-// 2024 1학기 STL  월910화78        4월 1일 월요일                            (5주1)
+// 2024 1학기 STL  월910화78        4월 2일 화요일                            (5주2)
 // 
 // 5월 6일 월요일 강의 함
 // 4월 23일 시험
@@ -8,44 +8,40 @@
 // --------------------------------------------------------------------------------
 
 #include <iostream>
-#include <memory>
+#include <array>
+#include <algorithm>
 
+#include "String.h"
 #include "save.h"
 
 using namespace std;
 
-
-class String {
-    size_t len {};
-    unique_ptr<char[]> p;
-
-public:
-    String(const char* str) : len { strlen(str) } {
-        p = make_unique<char[]>(len);
-        memcpy(p.get(), str, len);
-    }
-
-    String(const String& s) : String { s.p.get() } {
-
-    }
-
-    friend ostream& operator<<(ostream& out, const String& s) {
-        for(size_t i=0; i<s.len; ++i) {
-            out << s.p.get()[i];
-        }
-        return out;
-    }
-};
-
-//using String = string;
+extern bool 관찰;
 
 
 int main() {
-    String s { "STL을 관찰하기 위한 클래스 입니다." };
-    String t = s;
+    array<String, 5> a { 
+        "jfdkl;fjdskajfkdsl",
+        "jetufivonmk,34fjdkbvv8909a",
+        "",
+        "dkssud dhk toswm dktlsmsrnsk",
+        "rjq.sk.dj.fuq.tmq.sl.ek."
+    };
 
-    cout << s << endl;
-    cout << t << endl;
+    //sort(a.begin(), a.end(), [](const String& a, const String& b) { 
+    //    return a.getLen() < b.getLen(); 
+    //});
+    
+    // [문제] sort를 사용하여 a가 관리하는 String을 오름차순으로 정렬한 후 출력하라
+
+    for(String& s : a) {
+        auto start = s.data();
+        sort(start, start + s.getLen());
+    }
+    
+    for(const String& s : a) {
+        cout << s << endl;
+    }
 
     //save("stl.cpp");
 }

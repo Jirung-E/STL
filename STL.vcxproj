@@ -133,9 +133,11 @@
   <ItemGroup>
     <ClCompile Include="save.cpp" />
     <ClCompile Include="stl.cpp" />
+    <ClCompile Include="String.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="save.h" />
+    <ClInclude Include="String.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

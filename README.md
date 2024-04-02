@@ -125,3 +125,5 @@ void f(function<bool(int, int)> x) {
     cout << x(3, 5) << endl;
 }
 ```
+
+## 5ÁÖÂ÷ - 04/02
