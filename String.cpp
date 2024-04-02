@@ -57,8 +57,6 @@ String::String(const String& other):
         cout << "[" << id << "] - 汗荤积己, 辨捞: " << len << ", 林家: " << (void*)p.get() << endl;
 }
 
-///////////////////////////////////////////////////////////////////////////////////
-
 String& String::operator=(const String& rhs) {
     if(this != &rhs) {
         p.release();
