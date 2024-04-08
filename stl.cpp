@@ -32,10 +32,15 @@ int main() {
         return 20240408;
     }
 
-    for(int i=0; i<100; ++i) {
+    for(int i=0; i<a.size(); ++i) {
         in >> a[i];
     }
 
+    
+
+    for(const auto& str : a) {
+        cout << str << endl;
+    }
 
     //save("stl.cpp");
 }
