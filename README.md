@@ -127,3 +127,34 @@ void f(function<bool(int, int)> x) {
 ```
 
 ## 5주차 - 04/02
+
+
+## 6주차 - 04/08
+Container(자료구조) - class template  
+> "Containers are objects that store other objects." - 표준문서 중  
+1. Sequence Container  
+  - `array<T, N>`
+  - `vector<T>`
+  - `deque<T>`
+    > 양쪽으로 확장 가능  
+  - `forward_list<T>`
+    > 싱글 링크드 리스트  
+  - `list<T>`
+2. Associative Container
+3. Unordered Associative Container  
+기타: Stack, Queue, Float, Set, Map, ...  
+
+Algorithm - function template  
+1. Non-modifying
+2. Modifying
+3. Sort  
+기타: Numeric, ...   
+
+컨테이너와 알고리즘이 iterator를 통해 상호작용  
+알고리즘이 컨테이너의 시작, 끝, 다음을 알게 해준다.  
+`Iterator Pattern`  
+`OCP(Open-Closed Principle)`  
+
+
+
+`component pattern`?  

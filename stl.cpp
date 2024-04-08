@@ -1,15 +1,15 @@
 // --------------------------------------------------------------------------------
-// 2024 1학기 STL  월910화78        4월 2일 화요일                            (5주2)
+// 2024 1학기 STL  월910화78        4월 2일 화요일                            (6주1)
 // 
 // 5월 6일 월요일 강의 함
 // 4월 23일 시험
 // 
-// 
+// STL - Container
 // --------------------------------------------------------------------------------
 
 #include <iostream>
+#include <fstream>
 #include <array>
-#include <algorithm>
 
 #include "String.h"
 #include "save.h"
@@ -20,31 +20,22 @@ extern bool 관찰;
 
 
 int main() {
-    array<String, 5> a { 
-        "jfdkl;fjdskajfkdsl",
-        "jetufivonmk,34fjdkbvv8909a",
-        "",
-        "dkssud dhk toswm dktlsmsrnsk",
-        "rjq.sk.dj.fuq.tmq.sl.ek."
-    };
+    array<String, 100> a;
 
-    //sort(a.begin(), a.end(), [](const String& a, const String& b) { 
-    //    return a.getLen() < b.getLen(); 
-    //});
-    
-    // [문제] sort를 사용하여 a가 관리하는 String을 오름차순으로 정렬한 후 출력하라
+    // [문제] a에 "stl.cpp"에 있는 단어를 저장하라.
+    // a를 길이 오름차순으로 정렬하라.
+    // 화면에 출력하라.
 
-    for(const String& s : a) {
-        auto start = s.getMem();
-        sort(start, start + s.getLen());
-        //sort(start, start + s.getLen(), [](char a, char b) {
-        //    return a > b;
-        //});
-    }
-    
-    for(const String& s : a) {
-        cout << s << endl;
+    ifstream in { "stl.cpp" };
+    if(not in) {
+        cout << "파일 열기 실패" << endl;
+        return 20240408;
     }
 
-    save("stl.cpp");
+    for(int i=0; i<100; ++i) {
+        in >> a[i];
+    }
+
+
+    //save("stl.cpp");
 }
