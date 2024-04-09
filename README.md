@@ -158,3 +158,11 @@ Algorithm - function template
 
 
 `component pattern`?  
+
+## 6주차 - 04/09
+vector의 구조: 크기, 데이터, 재할당하지않고 관리할 수 있는 원소의 개수  
+  > size, data, capacity  
+capacity는 이전의 1.5배가 된다.  
+
+재할당 보는 과정에서 교수님은 복사가 일어나는데 나는 안일어난다  
+뭐임??  
