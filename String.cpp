@@ -7,6 +7,8 @@
 
 #include "String.h"
 
+#include <string>
+
 using namespace std;
 
 
@@ -102,4 +104,16 @@ size_t String::getLen() const {
 
 char* String::getMem() const {
     return p.get();
+}
+
+// 04.09
+istream& operator>>(istream& in, String& s) {
+    string ts;
+    in >> ts;
+
+    s.len = ts.size();
+    s.p = make_unique<char[]>(s.len);
+    memcpy(s.p.get(), ts.data(), s.len);
+
+    return in;
 }

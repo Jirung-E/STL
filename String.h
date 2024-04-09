@@ -45,4 +45,7 @@ public:
         }
         return out;
     }
+
+    // 04.09
+    friend std::istream& operator>>(std::istream& in, String& s);
 };
