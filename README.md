@@ -175,3 +175,8 @@ noexcept 때문이었다.
 > 이런일을 방지하기 위해 복사를 한다.  
 > noexcept를 붙이면 이런 예외가 발생하지 않는다고 알려주는 것이다.  
 
+remove: 삭제하지 않고 뒤로 밀어버린다. 따라서 크기를 직접 줄여줘야 한다.  
+```cpp
+// erase-remove idiom
+v.erase(remove(v.begin(), v.end(), 3));
+```

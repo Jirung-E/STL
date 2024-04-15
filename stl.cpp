@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------
 
 #include <iostream>
-#include <fstream>
 #include <vector>
 
 #include "String.h"
@@ -20,32 +19,17 @@ extern bool 관찰;
 
 
 int main() {
-    // [문제] "stl.cpp"에 있는 알파벳 소문자의 출현 횟수를 다음과 같이 출력하라
-    // a - 20
-    // b - 3
-    // c - 1
-    // ...
-    // z - 2
+    vector<int> v { 1, 3, 2, 3, 4, 5, 3, 3, 3, 5, 1, 65, 12, 6, 33, 333, 3333 };
 
-    ifstream in { "stl.cpp" };
-    if(not in) {
-        return 0;
+    // [문제] v에서 3을 제거하고 출력하라.
+
+    // erase-remove idiom
+    v.erase(remove(v.begin(), v.end(), 3));
+
+    for(int num : v) {
+        cout << num << ' ';
     }
+    cout << endl;
 
-    vector<int> counts { };
-    counts.resize('z'-'a'+1);
-
-    char c;
-    while(in >> c) {
-        if(islower(c)) {
-            ++counts[c-'a'];
-        }
-    }
-
-
-    for(int i=0; i<counts.size(); ++i) {
-        cout << char(i+'a') << " - " << counts[i] << endl;
-    }
-
-    //save("stl.cpp");
+    save("stl.cpp");
 }
