@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------
-// 2024 1학기 STL  월910화78        4월 9일 화요일                            (6주2)
+// 2024 1학기 STL  월910화78        4월 15일 월요일                            (7주1)
 // 
 // 5월 6일 월요일 강의 함
 // 4월 23일 시험
@@ -8,8 +8,8 @@
 // --------------------------------------------------------------------------------
 
 #include <iostream>
+#include <fstream>
 #include <vector>
-#include <algorithm>
 
 #include "String.h"
 #include "save.h"
@@ -20,18 +20,31 @@ extern bool 관찰;
 
 
 int main() {
-    // [문제] 키보드에서 입력한 String을 길이오름차순 정렬하여 출력하라.
+    // [문제] "stl.cpp"에 있는 알파벳 소문자의 출현 횟수를 다음과 같이 출력하라
+    // a - 20
+    // b - 3
+    // c - 1
+    // ...
+    // z - 2
 
-    //관찰 = true;
+    ifstream in { "stl.cpp" };
+    if(not in) {
+        return 0;
+    }
 
-    vector<String> numbers { istream_iterator<String> { cin }, {} };
+    vector<int> counts { };
+    counts.resize('z'-'a'+1);
 
-    sort(numbers.begin(), numbers.end(), [](const String& a, const String& b) {
-        return a.getLen() < b.getLen();
-    });
+    char c;
+    while(in >> c) {
+        if(islower(c)) {
+            ++counts[c-'a'];
+        }
+    }
 
-    for(const String& s : numbers) {
-        cout << s << endl;
+
+    for(int i=0; i<counts.size(); ++i) {
+        cout << char(i+'a') << " - " << counts[i] << endl;
     }
 
     //save("stl.cpp");
