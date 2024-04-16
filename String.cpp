@@ -8,6 +8,7 @@
 #include "String.h"
 
 #include <string>
+#include <algorithm>        // 04.16 equal
 
 using namespace std;
 
@@ -99,7 +100,10 @@ String& String::operator=(String&& other) noexcept {
 
 // 연산자 오버로딩 operator== - 04.16
 bool String::operator==(const String& other) const {
-    return !strcmp(p.get(), other.p.get());
+    if(len != other.len) {
+        return false;
+    }
+    return std::equal(p.get(), p.get()+len, other.p.get());
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
