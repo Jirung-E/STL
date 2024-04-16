@@ -5252,3 +5252,65 @@ int main() {
 
     save("stl.cpp");
 }
+
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-04-16 화요일 오후 4:52:55 
+===============================================================================
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        4월 16일 화요일                            (7주2)
+// 
+// 5월 6일 월요일 강의 함
+// 4월 23일 시험
+// 
+// deque - 임의접근, 양끝단 삽입 상수시간,
+// --------------------------------------------------------------------------------
+
+#include <iostream>
+#include <deque>
+
+#include "String.h"
+#include "save.h"
+
+using namespace std;
+
+extern bool 관찰;
+
+
+int main() {
+    deque<int> d { 1, 2, 3, 4, 5, 6, 7 };
+
+    for(int i=0; i<d.size(); ++i) {
+        cout << &d[i] << endl;
+    }
+
+    d.push_front(0);
+    cout << endl;
+
+    for(int i=0; i<d.size(); ++i) {
+        cout << &d[i] << endl;
+    }
+
+    d.push_back(8);
+    cout << endl;
+
+    for(int i=0; i<d.size(); ++i) {
+        cout << &d[i] << endl;
+    }
+
+    for(int i=0; i<d.size(); ++i) {
+        cout << &d[i] << endl;
+    }
+
+    d.push_back(9);
+    cout << endl;
+
+    for(int i=0; i<d.size(); ++i) {
+        cout << &d[i] << endl;
+    }
+
+    // 4개씩 묶여있다?
+
+    save("stl.cpp");
+}

@@ -4,10 +4,12 @@
 // 5월 6일 월요일 강의 함
 // 4월 23일 시험
 // 
-// list
+// deque - vector와 list의 중간형태를 띄는 자료구조(stl에서)
 // --------------------------------------------------------------------------------
 
 #include <iostream>
+#include <deque>
+#include <vector>
 #include <list>
 
 #include "String.h"
@@ -18,19 +20,26 @@ using namespace std;
 extern bool 관찰;
 
 
+class Test {
+    char x[4096];
+};
+
+
 int main() {
-    list<String> v { "1", "22", "4444", "55555" };
+    //vector<Test> v;     // 2362204
+    deque<Test> v;        // 46~~~~~
+    //list<Test> v;       // ??
 
-    auto p = v.begin();
-    ++p;
-    ++p;
-
-    관찰 = true;
-    v.emplace(p, "333");
-    관찰 = false;
-
-    for(const String& s : v) {
-        cout << s << endl;
+    while(true) {
+        try {
+            v.push_back(Test {});
+        }
+        catch(...) {
+            cout << endl << endl;
+            cout << "여기까지" << endl;
+            cout << v.size() << endl;
+            break;
+        }
     }
 
     //save("stl.cpp");

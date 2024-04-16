@@ -191,3 +191,20 @@ v.erase(remove(v.begin(), v.end(), 3));
 `auto result = v | views::filter([](int n) { return n % 2 == 0; });`
 
 `vector::insert`는 있지만 쓰지 마라.  
+
+deque - vector와 list의 중간형태를 띄는 자료구조(stl에서)  
+4개씩 묶여서 할당된다.  
+
+
+- vector: 메모리상 연속된 위치  
+- deque: n개씩 연속된 위치
+- list: 연속되지 않은 위치
+
+> amortized constant time: 평균적으로 상수시간
+
+list의 단점: 임의접근 불가, 포인터(prev, next)로 인한 메모리 소모  
+
+deque이 vector보다 많은 값을 담을 수 있다 -> 나눠진 영역에 할당이 가능해서  
+
+list보다 낭비가 덜하고 빠르다
+vector보다 유연한 할당이 가능하다
