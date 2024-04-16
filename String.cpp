@@ -96,6 +96,10 @@ String& String::operator=(String&& other) noexcept {
     return *this;
 }
 
+bool String::operator==(const String& other) const {
+    return !strcmp(p.get(), other.p.get());
+}
+
 ///////////////////////////////////////////////////////////////////////////////////
 
 size_t String::getLen() const {

@@ -34,6 +34,8 @@ public:
     String(String&& other) noexcept;
     String& operator=(String&& other) noexcept;
 
+    bool operator==(const String& other) const;
+
 public:
     size_t getLen() const;
     char* getMem() const;

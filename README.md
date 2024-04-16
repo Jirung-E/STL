@@ -180,3 +180,12 @@ remove: 삭제하지 않고 뒤로 밀어버린다. 따라서 크기를 직접 줄여줘야 한다.
 // erase-remove idiom
 v.erase(remove(v.begin(), v.end(), 3));
 ```
+
+## 7주차 - 04/16
+그냥 `erase(container, value)` 쓰면 된다.  
+
+`vector<int> v(100);`와 `vector<int> v { 100 };`는 다르다  
+100개를 넣거나 100을 넣거나  
+
+`erase_if(container, lambda)`
+`auto result = v | views::filter([](int n) { return n % 2 == 0; });`
