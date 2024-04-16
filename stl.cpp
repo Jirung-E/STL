@@ -15,13 +15,17 @@
 
 using namespace std;
 
+extern bool 관찰;
+
 
 int main() {
+    관찰 = true;
+
     vector<String> v { "1", "2", "3", "4", "5" };
 
     // [문제] v에서 "3"을 삭제하라.
 
-    erase_if(v, [](const String& s) { return s == "3"; });
+    erase(v, "3");
     
     for(const String& s : v) {
         cout << s << endl;

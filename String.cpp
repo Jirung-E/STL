@@ -73,6 +73,7 @@ String& String::operator=(const String& rhs) {
     return *this;
 }
 
+// 이동생성과 이동할당 - 04.02, 04.15
 String::String(String&& other) noexcept:
     len { other.len },
     id { ++uid }
@@ -96,6 +97,7 @@ String& String::operator=(String&& other) noexcept {
     return *this;
 }
 
+// 연산자 오버로딩 operator== - 04.16
 bool String::operator==(const String& other) const {
     return !strcmp(p.get(), other.p.get());
 }

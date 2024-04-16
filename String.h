@@ -2,6 +2,8 @@
 // String.h     STL동작을 관찰하기 위한 클래스
 // 
 // 04.02 시작
+// 04.15 noexcept: 에러를 일으키지 않는것을 보장함
+// 04.16 operator==: logical equal
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -30,10 +32,11 @@ public:
     String(const String& other);
     String& operator=(const String& rhs);
 
-    // 이동생성과 이동할당 - 04.02
+    // 이동생성과 이동할당 - 04.02, 04.15
     String(String&& other) noexcept;
     String& operator=(String&& other) noexcept;
 
+    // 연산자 오버로딩 operator== - 04.16
     bool operator==(const String& other) const;
 
 public:
