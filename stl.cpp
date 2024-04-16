@@ -3,12 +3,12 @@
 // 
 // 5월 6일 월요일 강의 함
 // 4월 23일 시험
+// 
+// list
 // --------------------------------------------------------------------------------
 
 #include <iostream>
-#include <print>
-#include <vector>
-#include <numeric>
+#include <list>
 
 #include "String.h"
 #include "save.h"
@@ -19,14 +19,16 @@ extern bool 관찰;
 
 
 int main() {
-    //관찰 = true;
+    list<String> v { "1", "22", "4444", "55555" };
 
-    vector<String> v { "3", "1", "2", "3", "4", "5", "33", "3 3", " 3", "3 " };
+    auto p = v.begin();
+    ++p;
+    ++p;
 
-    // [문제] v에서 "3"을 삭제하라.
+    관찰 = true;
+    v.emplace(p, "333");
+    관찰 = false;
 
-    erase(v, "3");
-    
     for(const String& s : v) {
         cout << s << endl;
     }

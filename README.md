@@ -189,3 +189,5 @@ v.erase(remove(v.begin(), v.end(), 3));
 
 `erase_if(container, lambda)`
 `auto result = v | views::filter([](int n) { return n % 2 == 0; });`
+
+`vector::insert`는 있지만 쓰지 마라.  
