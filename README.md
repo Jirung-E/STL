@@ -217,3 +217,6 @@ sort로 정렬을 하려면 뺄셈 가능한 반복자를 알려줘야한다.
 하려면 list::sort를 이용해야한다.  
 정렬을 하면 가리키는 포인터만 바뀌므로 관찰 메시지가 나오지 않는다.  
 이 정렬은 동등한(equivalent) 원소에 대해 순서를 유지한다.(stable sort)  
+
+역방향 반복자 r~~  
+https://en.cppreference.com/w/cpp/iterator/reverse_iterator  

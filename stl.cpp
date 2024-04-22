@@ -51,5 +51,13 @@ int main() {
         cout << *p << endl;
     }
 
-    save("stl.cpp");
+    cout << endl << endl;
+
+    // [문제] 길이가 5인 것들만 화면에 출력하라.
+    // 근본방법
+    // for_each
+    // filter
+    // 정렬된것을 이용해서 길이가 5인것의 begin, end를 찾기?
+
+    //save("stl.cpp");
 }
