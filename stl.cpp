@@ -31,10 +31,7 @@ int main() {
         return 0;
     }
 
-    String s;
-    while(ifs >> s) {
-        cont.emplace_back(s);       // 이렇게 하면 push_back과 똑같이 동작
-    }
+    cont = { istream_iterator<String>{ifs}, {} };
 
     관찰 = false;
 
@@ -42,5 +39,5 @@ int main() {
         cout << e << endl;
     }
 
-    //save("stl.cpp");
+    save("stl.cpp");
 }
