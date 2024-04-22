@@ -38,15 +38,18 @@ int main() {
     cont.sort([](const String& s1, const String& s2) {
         return s1.getLen() < s2.getLen();
     });
-    //sort(cont.begin(), cont.end(), [](const String& s1, const String& s2) {
-    //    return s1.getLen() < s2.getLen();
-    //});
+
+    // 뒤집기
+    cont.reverse();
 
     관찰 = false;
 
-    for(const auto& e : cont) {
-        cout << e << endl;
+    cout << endl;
+
+    // 출력을 거꾸로 하고 싶다
+    for(auto p=cont.rbegin(); p!= cont.rend(); ++p) {
+        cout << *p << endl;
     }
 
-    //save("stl.cpp");
+    save("stl.cpp");
 }
