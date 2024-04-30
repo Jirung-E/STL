@@ -230,3 +230,9 @@ list
 - unique: 중복 원소 제거
 
 문자열 비교: Lexicographical comparison
+
+`forward_list`: singly linked list
+C스타일로 작성된 singly linked list보다 시간, 공간적 오버헤드가 많지 않다
+
+`span`?
+char[], string, vector 등 메모리가 contiguous한 것들을 한가지 통일된 방식으로 표현할 수 있게 한 클래스
