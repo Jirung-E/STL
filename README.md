@@ -219,4 +219,12 @@ sort로 정렬을 하려면 뺄셈 가능한 반복자를 알려줘야한다.
 이 정렬은 동등한(equivalent) 원소에 대해 순서를 유지한다.(stable sort)  
 
 역방향 반복자 r~~  
-https://en.cppreference.com/w/cpp/iterator/reverse_iterator  
+https://en.cppreference.com/w/cpp/iterator/reverse_iterator 
+
+
+## 9주차 - 04/30
+list  
+- splice: 리스트 합침
+- merge: 정렬된 리스트 합침, stable하게
+- sort: 정렬
+- unique: 중복 원소 제거
