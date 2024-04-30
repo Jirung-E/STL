@@ -7,6 +7,7 @@
 // --------------------------------------------------------------------------------
 
 #include <iostream>
+#include <fstream>
 #include <list>
 
 #include "String.h"
@@ -18,20 +19,40 @@ extern bool 관찰;
 
 
 int main() {
-    list<String> name1 { "이준", "이현", "이서", "서아", "은우" };
-    list<String> name2 { "하준", "연우", "시우", "지안", "도윤", "서윤" };
-
-    // [문제] 리스트 2개를 하나로 합쳐 주세요.
-    name1.merge(name2);
-
-    for(const auto& s : name1) {
-        cout << s << endl;
+    // [문제] "stl.cpp"의 소문자를 list<char>에 push_back()으로 저장하라.
+    ifstream in { "stl.cpp" };
+    if(not in) {
+        return 0;
     }
 
+    list<char> charlist;
+    
+    char c;
+    while(in >> c) {
+        if(islower(c)) {
+            charlist.push_back(c);
+        }
+    }
+
+    // 출력하라.
+    for(char c : charlist) {
+        cout << c;
+    }
     cout << endl;
-    cout << "합쳐짐을 당한 리스트" << endl;
-    for(const auto& s : name2) {
-        cout << s << endl;
+
+    // 모든 소문자가 다 있나 확인하라.
+    charlist.sort();
+    cout << charlist.unique() << endl;
+    for(char c : charlist) {
+        cout << c;
+    }
+    cout << endl;
+    cout << charlist.size() << endl;
+    if(charlist.size() == 'z'-'a'+1) {
+        cout << "다있다" << endl;
+    }
+    else {
+        cout << "모자라" << endl;
     }
 
     //save("stl.cpp");
