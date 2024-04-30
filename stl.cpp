@@ -9,6 +9,8 @@
 #include <iostream>
 #include <fstream>
 #include <list>
+#include <vector>
+#include <algorithm>
 
 #include "String.h"
 #include "save.h"
@@ -25,7 +27,7 @@ int main() {
         return 0;
     }
 
-    list<char> charlist;
+    vector<char> charlist;
     
     char c;
     while(in >> c) {
@@ -41,8 +43,8 @@ int main() {
     cout << endl;
 
     // 모든 소문자가 다 있나 확인하라.
-    charlist.sort();
-    cout << charlist.unique() << endl;
+    sort(charlist.begin(), charlist.end());
+    charlist.erase(unique(charlist.begin(), charlist.end()), charlist.end());
     for(char c : charlist) {
         cout << c;
     }
