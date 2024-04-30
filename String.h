@@ -4,6 +4,7 @@
 // 04.02 시작
 // 04.15 noexcept: 에러를 일으키지 않는것을 보장함
 // 04.16 operator==: logical equal
+// 04.30 operator<
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -37,7 +38,10 @@ public:
     String& operator=(String&& other) noexcept;
 
     // 연산자 오버로딩 operator== - 04.16
-    bool operator==(const String& other) const;
+    bool operator==(const String& rhs) const;
+
+    // 04.30 <
+    bool operator<(const String& rhs) const;
 
 public:
     size_t getLen() const;

@@ -228,3 +228,5 @@ list
 - merge: 정렬된 리스트 합침, stable하게
 - sort: 정렬
 - unique: 중복 원소 제거
+
+문자열 비교: Lexicographical comparison

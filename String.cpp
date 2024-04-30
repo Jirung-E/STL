@@ -99,11 +99,16 @@ String& String::operator=(String&& other) noexcept {
 }
 
 // 연산자 오버로딩 operator== - 04.16
-bool String::operator==(const String& other) const {
-    if(len != other.len) {
+bool String::operator==(const String& rhs) const {
+    if(len != rhs.len) {
         return false;
     }
-    return std::equal(p.get(), p.get()+len, other.p.get());
+    return std::equal(p.get(), p.get()+len, rhs.p.get());
+}
+
+bool String::operator<(const String& rhs) const {
+    return lexicographical_compare(p.get(), p.get()+len,
+                                   rhs.p.get(), rhs.p.get()+rhs.len);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
