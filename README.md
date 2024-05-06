@@ -236,3 +236,42 @@ C스타일로 작성된 singly linked list보다 시간, 공간적 오버헤드가 많지 않다
 
 `span`?
 char[], string, vector 등 메모리가 contiguous한 것들을 한가지 통일된 방식으로 표현할 수 있게 한 클래스
+
+
+## 10주차 - 05/06
+stl의 구성요소?  
+- container
+- algorithm
+- 이 둘을 연결하는 iterator
+
+`void f()`, `class X::operator()`, `[](){}` 등을 대표하는 `function`  
+`char*`, `char[]`, `const char*`, `string` 등을 대표하는 `string_view`  
+`int[]`, `array`, `vector` 등을 대표하는 `span`  
+
+iterator: Iterators are a generalization of pointers  
+  포인터를 일반화한 것.  
+  이걸 사용하면 자료구조가 뭔지에 관계 없이 동일한 방식으로 코딩 가능  
+
+named requirement: 지켜야할 사항?  
+> `concept`: named requirement를 표현하는 것?  
+
+- LegacyInputIterator
+- LegacyOutputIterator
+- LegacyForwardIterator
+- LegacyBidirectionalIterator
+- LegacyRandomAccessIterator
+- LegacyContiguousIterator
+
+`Iter::iterator_concept`  
+`Iter::iterator_category`  
+
+`iterator_concept`는 contiguous한 컨테이너의 iterator에만 있다.  
+
+SFINAE: Substitution Failure Is Not An Error  
+  > 컴파일러가 함수 템플릿의 인자를 대입하려고 할 때, 대입이 불가능하면 그 함수 템플릿은 후보에서 제외한다.  
+  > 그래서 컴파일 에러가 나지 않는다.  
+
+
+
+
+

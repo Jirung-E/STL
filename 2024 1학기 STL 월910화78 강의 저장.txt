@@ -5575,3 +5575,164 @@ int main() {
 
     save("stl.cpp");
 }
+
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-05-06 월요일 오후 6:26:13 
+===============================================================================
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        5월 6일 월요일                            (10주1)
+// 
+// iterator: Iterators are a generalization of pointers
+// --------------------------------------------------------------------------------
+
+#include <iostream>
+
+#include "String.h"
+#include "save.h"
+
+using namespace std;
+
+extern bool 관찰;
+
+
+int main() {
+    // 출력스트림반복자(stream 반복자, 반복자 어댑터) 의 동작을 통해 
+    // 반복자가 무엇인지 알아본다.
+    
+    ostream_iterator<char> p { cout };
+
+    *p = 'A';
+    ++p;
+    *p = 'B';
+    ++p;
+    *p = 'C';
+
+    save("stl.cpp");
+}
+
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-05-06 월요일 오후 6:34:01 
+===============================================================================
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        5월 6일 월요일                            (10주1)
+// 
+// iterator: Iterators are a generalization of pointers
+// --------------------------------------------------------------------------------
+
+#include <iostream>
+
+#include "String.h"
+#include "save.h"
+
+using namespace std;
+
+extern bool 관찰;
+
+
+int main() {
+    // 출력스트림반복자(stream 반복자, 반복자 어댑터) 의 동작을 통해 
+    // 반복자가 무엇인지 알아본다.
+    
+    ostream_iterator<char> p { cout };
+
+    // 이전과 같은 결과
+    p = 'A';
+    p = 'B';
+    p = 'C';
+
+    save("stl.cpp");
+}
+
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-05-06 월요일 오후 7:04:02 
+===============================================================================
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        5월 6일 월요일                            (10주1)
+// 
+// iterator: Iterators are a generalization of pointers
+// --------------------------------------------------------------------------------
+
+#include <iostream>
+#include <forward_list>
+#include <list>
+#include <deque>
+#include <vector>
+#include <array>
+#include <span>
+
+#include "String.h"
+#include "save.h"
+
+using namespace std;
+
+extern bool 관찰;
+
+
+template<class Iter>
+void f(Iter it) {
+    cout << typeid(Iter::iterator_category).name() << endl;
+}
+
+
+int main() {
+    // [문제] 반복자는 6가지 종류가 있다.
+    // 함수 f에게 반복자를 인자로 넘겨주면 어떤 종류인지 출력하게 하라.
+
+    f(istream_iterator<String> { cin });
+    f(ostream_iterator<String> { cout });
+    f(forward_list<char>::iterator {});
+    f(list<double>::reverse_iterator {});
+    f(deque<int>{}.cbegin());
+    f(vector<int>{}.begin());       // contiguous iterator 가 아니라 random_access iterator로 나온다.
+    f(array<int, 10>::iterator {});
+    f(span<int>::iterator {});
+
+    save("stl.cpp");
+}
+
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-05-06 월요일 오후 7:05:39 
+===============================================================================
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        5월 6일 월요일                            (10주1)
+// 
+// iterator: Iterators are a generalization of pointers
+// --------------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <array>
+#include <span>
+
+#include "String.h"
+#include "save.h"
+
+using namespace std;
+
+extern bool 관찰;
+
+
+template<class Iter>
+void f(Iter it) {
+    cout << typeid(Iter::iterator_concept).name() << endl;
+}
+
+
+int main() {
+    // [문제] 반복자는 6가지 종류가 있다.
+    // 함수 f에게 반복자를 인자로 넘겨주면 어떤 종류인지 출력하게 하라.
+
+    f(vector<int>{}.begin());
+    f(array<int, 10>::iterator {});
+    f(span<int>::iterator {});
+
+    save("stl.cpp");
+}
