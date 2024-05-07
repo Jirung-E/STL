@@ -13,6 +13,76 @@
 #include <iostream>
 
 
+    // 05.07 iterator
+class String_Iterator {
+private:
+    char* p;
+
+public:
+    using difference_type = ptrdiff_t;
+    using value_type = char;
+    using pointer = char*;
+    using reference = char&;
+    using iterator_category = std::random_access_iterator_tag;
+
+    // C++17
+    using iterator_concept = std::contiguous_iterator_tag;
+
+public:
+    String_Iterator(char* p) : p { p } {
+
+    }
+
+public:
+    char operator*() const {
+        return *p;
+    }
+    bool operator==(const String_Iterator& other) const {
+        return p == other.p;
+    }
+    String_Iterator& operator++() {
+        ++p;
+        return *this;
+    }
+};
+
+// 역방향반복자 - Iterator adaptor
+class String_Reverse_Iterator {
+private:
+    char* p;
+
+public:
+    using difference_type = ptrdiff_t;
+    using value_type = char;
+    using pointer = char*;
+    using reference = char&;
+    using iterator_category = std::random_access_iterator_tag;
+
+    // C++17
+    using iterator_concept = std::contiguous_iterator_tag;
+
+public:
+    String_Reverse_Iterator(char* p) : p { p } {
+
+    }
+
+public:
+    char operator*() const {
+        return *(p-1);
+    }
+    bool operator==(const String_Reverse_Iterator& other) const {
+        return p == other.p;
+    }
+    String_Reverse_Iterator& operator++() {
+        --p;
+        return *this;
+    }
+};
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+
 class String {
     size_t len {};
     std::unique_ptr<char[]> p;
@@ -43,77 +113,14 @@ public:
     // 04.30 <
     bool operator<(const String& rhs) const;
 
-    // 05.07 iterator
-    class Iterator {
-    private:
-        char* p;
+    using iterator = String_Iterator;
+    using reverse_iterator = String_Reverse_Iterator;
 
-    public:
-        using difference_type = int;
-        using value_type = char;
-        using pointer = char*;
-        using reference = char&;
-        using iterator_category = std::random_access_iterator_tag;
+    iterator begin() const;
+    iterator end() const;
 
-        // C++17
-        using iterator_concept = std::contiguous_iterator_tag;
-
-    public:
-        Iterator(char* p) : p { p } {
-
-        }
-
-    public:
-        char operator*() const {
-            return *p;
-        }
-        bool operator==(const Iterator& other) const {
-            return p == other.p;
-        }
-        Iterator& operator++() {
-            ++p;
-            return *this;
-        }
-    };
-
-    Iterator begin() const;
-    Iterator end() const;
-
-    // 역방향반복자 - Iterator adaptor
-    class ReverseIterator {
-    private:
-        char* p;
-
-    public:
-        using difference_type = int;
-        using value_type = char;
-        using pointer = char*;
-        using reference = char&;
-        using iterator_category = std::random_access_iterator_tag;
-
-        // C++17
-        using iterator_concept = std::contiguous_iterator_tag;
-
-    public:
-        ReverseIterator(char* p) : p { p } {
-            
-        }
-
-    public:
-        char operator*() const {
-            return *(p-1);
-        }
-        bool operator==(const ReverseIterator& other) const {
-            return p == other.p;
-        }
-        ReverseIterator& operator++() {
-            --p;
-            return *this;
-        }
-    };
-
-    ReverseIterator rbegin() const;
-    ReverseIterator rend() const;
+    reverse_iterator rbegin() const;
+    reverse_iterator rend() const;
 
 public:
     size_t getLen() const;
