@@ -47,6 +47,31 @@ public:
     char* begin() const;
     char* end() const;
 
+    class ReverseIterator {
+    private:
+        char* p;
+
+    public:
+        ReverseIterator(char* p) : p { p } {
+            
+        }
+
+    public:
+        char operator*() {
+            return *p;
+        }
+        bool operator==(const ReverseIterator& other) const {
+            return p == other.p;
+        }
+        ReverseIterator& operator++() {
+            --p;
+            return *this;
+        }
+    };
+
+    ReverseIterator rbegin() const;
+    ReverseIterator rend() const;
+
 public:
     size_t getLen() const;
     char* getMem() const;

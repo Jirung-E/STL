@@ -274,4 +274,4 @@ SFINAE: Substitution Failure Is Not An Error
 
 
 ## 10주차 - 05/07
-
+대부분의 디자인패턴은 우회로.  

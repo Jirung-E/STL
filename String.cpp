@@ -120,6 +120,14 @@ char* String::end() const {
     return p.get() + len;
 }
 
+String::ReverseIterator String::rbegin() const {
+    return p.get() + len-1;
+}
+
+String::ReverseIterator String::rend() const {
+    return p.get() - 1;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////
 
 size_t String::getLen() const {
