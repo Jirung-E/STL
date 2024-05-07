@@ -44,8 +44,40 @@ public:
     bool operator<(const String& rhs) const;
 
     // 05.07 iterator
-    char* begin() const;
-    char* end() const;
+    class Iterator {
+    private:
+        char* p;
+
+    public:
+        using difference_type = int;
+        using value_type = char;
+        using pointer = char*;
+        using reference = char&;
+        using iterator_category = std::random_access_iterator_tag;
+
+        // C++17
+        using iterator_concept = std::contiguous_iterator_tag;
+
+    public:
+        Iterator(char* p) : p { p } {
+
+        }
+
+    public:
+        char operator*() const {
+            return *p;
+        }
+        bool operator==(const Iterator& other) const {
+            return p == other.p;
+        }
+        Iterator& operator++() {
+            ++p;
+            return *this;
+        }
+    };
+
+    Iterator begin() const;
+    Iterator end() const;
 
     // 역방향반복자 - Iterator adaptor
     class ReverseIterator {

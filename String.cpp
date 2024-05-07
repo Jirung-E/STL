@@ -112,20 +112,20 @@ bool String::operator<(const String& rhs) const {
 }
 
 
-char* String::begin() const {
+String::Iterator String::begin() const {
     return p.get();
 }
 
-char* String::end() const {
+String::Iterator String::end() const {
     return p.get() + len;
 }
 
 String::ReverseIterator String::rbegin() const {
-    return end();
+    return p.get() + len;
 }
 
 String::ReverseIterator String::rend() const {
-    return begin();
+    return p.get();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

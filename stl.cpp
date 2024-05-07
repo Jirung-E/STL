@@ -33,7 +33,7 @@ int main() {
     // reference	       
     // iterator_category
 
-    //f(s.begin());
+    f(s.begin());
     f(s.rbegin());
 
     for(auto it=s.rbegin(); it!=s.rend(); ++it) {
@@ -41,5 +41,5 @@ int main() {
     }
     cout << endl;
 
-    //save("stl.cpp");
+    save("stl.cpp");
 }
