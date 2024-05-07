@@ -67,6 +67,10 @@ public:
             --p;
             return *this;
         }
+        ReverseIterator operator++(int) {
+            ReverseIterator copy { p-- };
+            return copy;
+        }
     };
 
     ReverseIterator rbegin() const;
