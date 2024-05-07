@@ -18,7 +18,7 @@ template <class Iter>
 void f(Iter iter) {
     cout << typeid(iterator_traits<Iter>::iterator_category).name() << endl;
     // C++ 17
-    cout << typeid(iterator_traits<Iter>::iterator_concept).name() << endl;
+    cout << typeid(Iter::iterator_concept).name() << endl;
 }
 
 
@@ -33,12 +33,8 @@ int main() {
     // reference	       
     // iterator_category
 
-    cout << typeid(iterator_traits<decltype(s.begin())>::iterator_category).name() << endl;
-    cout << typeid(iterator_traits<decltype(s.begin())>::iterator_concept).name() << endl;
-    cout << typeid(iterator_traits<decltype(s.rbegin())>::iterator_category).name() << endl;
-    //cout << typeid(iterator_traits<decltype(s.rbegin())>::iterator_concept).name() << endl;
-    f(s.begin());
-    //f(s.rbegin());
+    //f(s.begin());
+    f(s.rbegin());
 
     for(auto it=s.rbegin(); it!=s.rend(); ++it) {
         cout << *it << ' ';
