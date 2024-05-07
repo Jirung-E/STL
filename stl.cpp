@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------
 
 #include <iostream>
+#include <span>
 
 #include "String.h"
 #include "save.h"
@@ -16,12 +17,13 @@ extern bool 관찰;
 
 int main() {
     String s { "1357924680" };
+    span<char> sp { s.begin(), s.end() };
 
-    // [문제] 다음 문장이 실행되게 하라.
-    for(char c : s) {
-        cout << c << ' ';
+    // [문제] 거꾸로 출력하라
+    for(auto it=sp.rbegin(); it!=sp.rend(); ++it) {
+        cout << *it << ' ';
     }
     cout << endl;
 
-    //save("stl.cpp");
+    save("stl.cpp");
 }
