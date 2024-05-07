@@ -47,9 +47,20 @@ public:
     char* begin() const;
     char* end() const;
 
+    // 역방향반복자 - Iterator adaptor
     class ReverseIterator {
     private:
         char* p;
+
+    public:
+        using difference_type = int;
+        using value_type = char;
+        using pointer = char*;
+        using reference = char&;
+        using iterator_category = std::random_access_iterator_tag;
+
+        // C++17
+        using iterator_concept = std::contiguous_iterator_tag;
 
     public:
         ReverseIterator(char* p) : p { p } {
@@ -57,7 +68,7 @@ public:
         }
 
     public:
-        char operator*() {
+        char operator*() const {
             return *(p-1);
         }
         bool operator==(const ReverseIterator& other) const {

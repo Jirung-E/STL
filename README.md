@@ -275,3 +275,10 @@ SFINAE: Substitution Failure Is Not An Error
 
 ## 10주차 - 05/07
 대부분의 디자인패턴은 우회로.  
+
+C++ 표준을 지키는 반복자가 되려면 다음 다섯가지 항목을 정의해야 한다.  
+- `difference_type`: 두 반복자 사이의 거리를 나타내는 자료형?
+- `value_type`: 값의 자료형?
+- `pointer`: 포인터?
+- `reference`: ?
+- `iterator_category`: 어떤 종류의 반복자인지

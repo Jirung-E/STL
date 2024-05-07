@@ -5769,3 +5769,323 @@ int main() {
 
     save("stl.cpp");
 }
+
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-05-07 화요일 오후 4:29:24 
+===============================================================================
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        5월 7일 화요일                            (10주2)
+// 
+// iterator: Iterators are a generalization of pointers
+// --------------------------------------------------------------------------------
+
+#include <iostream>
+
+#include "String.h"
+#include "save.h"
+
+using namespace std;
+
+extern bool 관찰;
+
+
+int main() {
+    String s { "1357924680" };
+
+    // [문제] 거꾸로 출력하라
+    for(auto it=s.rbegin(); it!=s.rend(); ++it) {
+        cout << *it << ' ';
+    }
+    cout << endl;
+
+    save("stl.cpp");
+}
+
+
+
+===============================================================================
+String.cpp, 저장시간: 2024-05-07 화요일 오후 4:29:37 
+===============================================================================
+// --------------------------------------------------------------------------------
+// String.cpp     STL동작을 관찰하기 위한 클래스
+// 
+// 04.02 시작
+// --------------------------------------------------------------------------------
+
+
+#include "String.h"
+
+#include <string>
+#include <algorithm>        // 04.16 equal
+
+using namespace std;
+
+
+// 관찰용 변수 추가 - 04.02
+bool 관찰 { false };
+
+
+
+
+
+size_t String::uid { };
+
+
+// 디폴트 생성자 - 04.02
+String::String():
+    len { 0 },
+    id { ++uid }
+{
+    if(관찰)
+        cout << "[" << id << "] - 디폴트생성, 길이: " << len << ", 주소: " << (void*)p.get() << endl;
+}
+
+String::String(const char* str):
+    len { strlen(str) },
+    id { ++uid }
+{
+    p = make_unique<char[]>(len);
+    memcpy(p.get(), str, len);
+
+    if(관찰)
+        cout << "[" << id << "] - 생성(char*), 길이: " << len << ", 주소: " << (void*)p.get() << endl;
+}
+
+String::~String() {
+    if(관찰)
+        cout << "[" << id << "] - 소멸, 길이: " << len << ", 주소: " << (void*)p.get() << endl;
+}
+
+// 복사생성과 복사할당 - 04.02
+String::String(const String& other): 
+    len { other.len },
+    id { ++uid }
+{
+    p = make_unique<char[]>(len);
+    memcpy(p.get(), other.p.get(), len);
+
+    if(관찰)
+        cout << "[" << id << "] - 복사생성, 길이: " << len << ", 주소: " << (void*)p.get() << endl;
+}
+
+String& String::operator=(const String& rhs) {
+    if(this != &rhs) {
+        p.release();
+        len = rhs.len;
+        p = make_unique<char[]>(len);
+        memcpy(p.get(), rhs.p.get(), len);
+    
+        if(관찰)
+            cout << "[" << id << "] - 복사할당, 길이: " << len << ", 주소: " << (void*)p.get() << endl;
+    }
+    
+    return *this;
+}
+
+// 이동생성과 이동할당 - 04.02, 04.15
+String::String(String&& other) noexcept:
+    len { other.len },
+    id { ++uid }
+{
+    p.reset(other.p.release());
+
+    if(관찰)
+        cout << "[" << id << "] - 이동생성, 길이: " << len << ", 주소: " << (void*)p.get() << endl;
+}
+
+String& String::operator=(String&& other) noexcept {
+    if(this != &other) {
+        p.reset();
+        len = other.len;
+        p.reset(other.p.release());
+
+        if(관찰)
+            cout << "[" << id << "] - 이동할당, 길이: " << len << ", 주소: " << (void*)p.get() << endl;
+    }
+
+    return *this;
+}
+
+// 연산자 오버로딩 operator== - 04.16
+bool String::operator==(const String& rhs) const {
+    if(len != rhs.len) {
+        return false;
+    }
+    return std::equal(p.get(), p.get()+len, rhs.p.get());
+}
+
+bool String::operator<(const String& rhs) const {
+    return lexicographical_compare(p.get(), p.get()+len,
+                                   rhs.p.get(), rhs.p.get()+rhs.len);
+}
+
+
+char* String::begin() const {
+    return p.get();
+}
+
+char* String::end() const {
+    return p.get() + len;
+}
+
+String::ReverseIterator String::rbegin() const {
+    return end();
+}
+
+String::ReverseIterator String::rend() const {
+    return begin();
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+
+size_t String::getLen() const {
+    return len;
+}
+
+char* String::getMem() const {
+    return p.get();
+}
+
+// 04.09
+istream& operator>>(istream& in, String& s) {
+    string ts;
+    in >> ts;
+
+    s.len = ts.size();
+    s.p = make_unique<char[]>(s.len);
+    memcpy(s.p.get(), ts.data(), s.len);
+
+    return in;
+}
+
+
+
+===============================================================================
+String.h, 저장시간: 2024-05-07 화요일 오후 4:29:37 
+===============================================================================
+// --------------------------------------------------------------------------------
+// String.h     STL동작을 관찰하기 위한 클래스
+// 
+// 04.02 시작
+// 04.15 noexcept: 에러를 일으키지 않는것을 보장함
+// 04.16 operator==: logical equal
+// 04.30 operator<
+// --------------------------------------------------------------------------------
+
+#pragma once
+
+#include <memory>
+#include <iostream>
+
+
+class String {
+    size_t len {};
+    std::unique_ptr<char[]> p;
+    size_t id;
+
+    static size_t uid;
+
+public:
+    // 디폴트 생성자 - 04.02
+    String();
+
+    String(const char* str);
+
+    // 소멸 관찰용 - 04.02
+    ~String();
+
+    // 복사생성과 복사할당 - 04.02
+    String(const String& other);
+    String& operator=(const String& rhs);
+
+    // 이동생성과 이동할당 - 04.02, 04.15
+    String(String&& other) noexcept;
+    String& operator=(String&& other) noexcept;
+
+    // 연산자 오버로딩 operator== - 04.16
+    bool operator==(const String& rhs) const;
+
+    // 04.30 <
+    bool operator<(const String& rhs) const;
+
+    // 05.07 iterator
+    char* begin() const;
+    char* end() const;
+
+    class ReverseIterator {
+    private:
+        char* p;
+
+    public:
+        ReverseIterator(char* p) : p { p } {
+            
+        }
+
+    public:
+        char operator*() {
+            return *(p-1);
+        }
+        bool operator==(const ReverseIterator& other) const {
+            return p == other.p;
+        }
+        ReverseIterator& operator++() {
+            --p;
+            return *this;
+        }
+    };
+
+    ReverseIterator rbegin() const;
+    ReverseIterator rend() const;
+
+public:
+    size_t getLen() const;
+    char* getMem() const;
+
+public:
+    friend std::ostream& operator<<(std::ostream& out, const String& s) {
+        for(size_t i=0; i<s.len; ++i) {
+            out << s.p.get()[i];
+        }
+        return out;
+    }
+
+    // 04.09
+    friend std::istream& operator>>(std::istream& in, String& s);
+};
+
+
+===============================================================================
+stl.cpp, 저장시간: 2024-05-07 화요일 오후 4:56:31 
+===============================================================================
+// --------------------------------------------------------------------------------
+// 2024 1학기 STL  월910화78        5월 7일 화요일                            (10주2)
+// 
+// iterator: Iterators are a generalization of pointers
+// --------------------------------------------------------------------------------
+
+#include <iostream>
+
+#include "String.h"
+#include "save.h"
+
+using namespace std;
+
+extern bool 관찰;
+
+
+int main() {
+    String s { "1357924680" };
+
+    // 반복자의 속성을 확인하는 표준 질문에 응답할 수 있어야 한다.
+    cout << typeid(iterator_traits<decltype(s.begin())>::iterator_category).name() << endl;
+    cout << typeid(iterator_traits<decltype(s.begin())>::iterator_concept).name() << endl;
+
+    for(auto it=s.rbegin(); it!=s.rend(); ++it) {
+        cout << *it << ' ';
+    }
+    cout << endl;
+
+    save("stl.cpp");
+}
