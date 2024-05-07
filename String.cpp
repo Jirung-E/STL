@@ -121,11 +121,11 @@ char* String::end() const {
 }
 
 String::ReverseIterator String::rbegin() const {
-    return p.get() + len-1;
+    return end();
 }
 
 String::ReverseIterator String::rend() const {
-    return p.get() - 1;
+    return begin();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

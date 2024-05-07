@@ -58,7 +58,7 @@ public:
 
     public:
         char operator*() {
-            return *p;
+            return *(p-1);
         }
         bool operator==(const ReverseIterator& other) const {
             return p == other.p;
