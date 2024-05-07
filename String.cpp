@@ -111,6 +111,15 @@ bool String::operator<(const String& rhs) const {
                                    rhs.p.get(), rhs.p.get()+rhs.len);
 }
 
+
+char* String::begin() const {
+    return p.get();
+}
+
+char* String::end() const {
+    return p.get() + len;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////
 
 size_t String::getLen() const {

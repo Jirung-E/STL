@@ -43,6 +43,10 @@ public:
     // 04.30 <
     bool operator<(const String& rhs) const;
 
+    // 05.07 iterator
+    char* begin() const;
+    char* end() const;
+
 public:
     size_t getLen() const;
     char* getMem() const;
