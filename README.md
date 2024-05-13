@@ -282,3 +282,16 @@ C++ 표준을 지키는 반복자가 되려면 다음 다섯가지 항목을 정의해야 한다.
 - `pointer`: 포인터?
 - `reference`: ?
 - `iterator_category`: 어떤 종류의 반복자인지
+
+
+## 11주차 - 05/13
+sort알고리즘은 인자로 받은 반복자가 random access가 가능하다고 가정한다.  
+random_access_iterator는 +=, -= 연산자를 지원한다?  
+
+l-value: left-value였는데 location-value로 바뀌었다? 저장위치를 찾을 수 있는 값?  
+
+![value_cat](cpp_value_categories.png)  
+이거 잘 봐라  
+
+`method();`랑 `method() const;`랑 다르다. 오버로딩 가능하다.
+

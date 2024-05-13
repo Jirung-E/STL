@@ -5,6 +5,8 @@
 // 04.15 noexcept: 에러를 일으키지 않는것을 보장함
 // 04.16 operator==: logical equal
 // 04.30 operator<
+// 05.07 iterator, iterator adapter
+// 05.13 String_Iterator가 진짜 random_access 반복자가 되도록 코딩
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -13,7 +15,7 @@
 #include <iostream>
 
 
-    // 05.07 iterator
+// 05.07 iterator
 class String_Iterator {
 private:
     char* p;
@@ -34,15 +36,36 @@ public:
     }
 
 public:
-    char operator*() const {
-        return *p;
-    }
     bool operator==(const String_Iterator& other) const {
         return p == other.p;
     }
     String_Iterator& operator++() {
         ++p;
         return *this;
+    }
+
+    // 05.13
+    difference_type operator-(const String_Iterator& rhs) const {
+        return p - rhs.p;
+    }
+    reference operator*() {
+        return *p;
+    }
+    reference operator*() const {       // 이거 오버로딩 된다.
+        return *p;
+    }
+    String_Iterator& operator--() {
+        --p;
+        return *this;
+    }
+    String_Iterator operator+(difference_type d) const {
+        return p + d;
+    }
+    bool operator<(const String_Iterator& rhs) const {
+        return p < rhs.p;
+    }
+    String_Iterator operator-(difference_type d) const {
+        return p - d;
     }
 };
 
