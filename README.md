@@ -293,5 +293,8 @@ l-value: left-value였는데 location-value로 바뀌었다? 저장위치를 찾을 수 있는 값?
 ![value_cat](cpp_value_categories.png)  
 이거 잘 봐라  
 
-`method();`랑 `method() const;`랑 다르다. 오버로딩 가능하다.
+`method();`랑 `method() const;`랑 다르다. 오버로딩 가능하다.  
+
+역방향 반복자는 코딩할 필요가 없다? `make_reverse_iterator`  
+
 

@@ -61,11 +61,11 @@ public:
     String_Iterator operator+(difference_type d) const {
         return p + d;
     }
-    bool operator<(const String_Iterator& rhs) const {
-        return p < rhs.p;
-    }
     String_Iterator operator-(difference_type d) const {
         return p - d;
+    }
+    bool operator<(const String_Iterator& rhs) const {
+        return p < rhs.p;
     }
 };
 
