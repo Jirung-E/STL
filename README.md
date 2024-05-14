@@ -300,3 +300,7 @@ l-value: left-value였는데 location-value로 바뀌었다? 저장위치를 찾을 수 있는 값?
 
 ## 11주차 - 05/14
 반복자 어댑터: 반복자인척하는놈  
+
+`inserter`  
+
+`back_inserter`: operator=에서 push_back을 호출해준다.  
