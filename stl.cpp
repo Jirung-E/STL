@@ -17,8 +17,9 @@ extern bool °üÂû;
 
 template <class SIter, class DIter>
 void my_copy(SIter first, SIter end, DIter dest) {
-    for(SIter it=first; it<end; ++it) {
-        *dest = *it;
+    while(first != end) {
+        *dest = *first;
+        ++first;
         ++dest;
     }
 }
