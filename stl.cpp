@@ -15,12 +15,15 @@ using namespace std;
 extern bool 관찰;
 
 
+// 세번째 인자는 callable type인데 이 중에서 boolean값을 리턴하는 것을 
+// 특별히 predicate이라고 부른다(조건자, 서술자, 판단자)
 template <class Iter, class Cond>
 Iter my_find_if(Iter first, Iter last, Cond func) {
-    for(Iter it=first; it<last; ++it) {
-        if(func(*it)) {
-            return it;
+    while(last != first) {
+        if(func(*first)) {
+            return first;
         }
+        ++first;
     }
     return last;
 }
