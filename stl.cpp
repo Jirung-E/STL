@@ -15,10 +15,10 @@ using namespace std;
 extern bool 관찰;
 
 
-template <class Iter, class Val>
-Iter my_find(Iter first, Iter last, Val val) {
+template <class Iter, class Cond>
+Iter my_find_if(Iter first, Iter last, Cond func) {
     for(Iter it=first; it<last; ++it) {
-        if(*it == val) {
+        if(func(*it)) {
             return it;
         }
     }
@@ -29,22 +29,25 @@ Iter my_find(Iter first, Iter last, Val val) {
 int main() {
     //save("stl.cpp");
 
-    String s { "20240513 - stl container iterator algorithm" };
+    String s { "stl algorithm - 2024년 5월 14일" };
 
-    // [문제] 사용자가 찾는 글자가 s에 있는지 알려주자
+    // [문제] 사용자가 찾는 조건에 맞는 글자가 s에 있는지 알려주자
+    // 조건: 숫자를 찾아서 홀수인지
 
-    while(true) {
-        cout << "찾을 문자는? ";
-        char ch;
-        cin >> ch;
-
-        auto p = my_find(s.begin(), s.end(), ch);
-        if(p != s.end()) {
-            cout << ch << "는 s의 " << distance(s.begin(), p) + 1 
-                << "번째 문자입니다." << endl;
+    auto p = my_find_if(s.begin(), s.end(), [](char c) {
+        if(isdigit(c)) {
+            if(c & 1) {
+                return true;
+            }
         }
-        else {
-            cout << ch << "는 s에 없는 글자입니다." << endl;
-        }
+        return false;
+    });
+
+    if(p != s.end()) {
+        cout << *p << "는 s의 " << distance(s.begin(), p) + 1 
+            << "번째 문자입니다." << endl;
+    }
+    else {
+        cout << "s에 찾을것이 없다." << endl;
     }
 }
