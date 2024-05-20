@@ -42,7 +42,7 @@ bool compareLength(const String& s1, const String& s2) {    // predicate
 int main() {
     // [문제] "이상한 나라의 앨리스.txt" 파일에 있는 단어를 set에 읽어 와라.
     // set은 단어길이기준 오름차순으로 정렬해야 한다.
-    set<String, Lambda> s;
+    multiset<String, Lambda> s;
 
     ifstream in { "이상한 나라의 앨리스.txt" };
     if(!in) {
@@ -57,7 +57,7 @@ int main() {
     for(const String& word : s) {
         cout << word << endl;
     }
-    cout << "unique한 단어 - " << s.size() << endl;        // 2948
+    cout << "읽은 단어 수 - " << s.size() << endl;        // 2948
 
     //save("stl.cpp");
 }
