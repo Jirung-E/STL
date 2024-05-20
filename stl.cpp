@@ -29,12 +29,9 @@ int main() {
         return 0;
     }
 
-    String temp;
-    while(in >> temp) {
-        s.insert(temp);
-    }
+    s = { istream_iterator<String>{in}, {} };
 
-    cout << s.size() << endl;
+    cout << "uniqueÇÑ ´Ü¾î - " << s.size() << endl;        // 2948
     for(const String& word : s) {
         cout << word << endl;
     }
