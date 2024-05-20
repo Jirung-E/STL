@@ -106,6 +106,7 @@ bool String::operator==(const String& rhs) const {
     return std::equal(p.get(), p.get()+len, rhs.p.get());
 }
 
+// 연산자 오버로딩 operator< - 04.30
 bool String::operator<(const String& rhs) const {
     return lexicographical_compare(p.get(), p.get()+len,
                                    rhs.p.get(), rhs.p.get()+rhs.len);

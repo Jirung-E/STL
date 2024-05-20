@@ -309,6 +309,7 @@ l-value: left-value였는데 location-value로 바뀌었다? 저장위치를 찾을 수 있는 값?
 ## 12주차 - 05/20
 `set`  
 - 정렬을 한다.  
+  `less<Key>`  
 - uniqueness판단  
   !(a < b) && !(b < a)    =>   equivalence(동등한) 관계  
   <- 비교 ->  a == b    =>   equality(상등) 관계  
@@ -317,3 +318,4 @@ l-value: left-value였는데 location-value로 바뀌었다? 저장위치를 찾을 수 있는 값?
 Associative Container - set   
 set은 unique한 key값을 정렬 상태로 유지한다.  
 uniqueness는 equivalence 관계를 이용하여 결정한다.  
+
