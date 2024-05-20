@@ -20,17 +20,33 @@ using namespace std;
 extern bool 관찰;
 
 
+bool compareLength(const String& s1, const String& s2) {    // predicate
+    //return s1.getLen() < s2.getLen();
+    if(s1.getLen() < s2.getLen()) {
+        return true;
+    }
+    else if(s1.getLen() > s2.getLen()) {
+        return false;
+    }
+
+    return s1 < s2;
+}
+
+
 int main() {
     // [문제] "이상한 나라의 앨리스.txt" 파일에 있는 단어를 set에 읽어 와라.
     // set은 단어길이기준 오름차순으로 정렬해야 한다.
-    set<String, std::less<String>> s;
+    set<String, bool(*)(const String&, const String&)> s { compareLength };
 
     ifstream in { "이상한 나라의 앨리스.txt" };
     if(!in) {
         return 0;
     }
 
-    s = { istream_iterator<String>{in}, {} };
+    String temp;
+    while(in >> temp) {
+        s.insert(temp);
+    }
 
     for(const String& word : s) {
         cout << word << endl;
