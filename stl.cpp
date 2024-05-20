@@ -20,32 +20,9 @@ using namespace std;
 extern bool 관찰;
 
 
-struct Lambda {
-    bool operator()(const String& s1, const String& s2) const {
-        if(isupper(*s1.begin())) {
-            if(isupper(*s2.begin())) {
-                return s1.getLen() < s2.getLen();
-            }
-            else {
-                return true;
-            }
-        }
-        else {
-            if(isupper(*s2.begin())) {
-                return false;
-            }
-            else {
-                return s1.getLen() < s2.getLen();
-            }
-        }
-    }
-};
-
-
 int main() {
-    // [문제] "이상한 나라의 앨리스.txt" 파일에 있는 단어를 set에 읽어 와라.
-    // set은 대문자로 시작하는 단어가 먼저 나와야 한다. 
-    multiset<String, Lambda> s;
+    // [문제] "이상한 나라의 앨리스.txt" 파일에 있는 단어를 multiset에 읽어 왔다.
+    multiset<String> s;
 
     ifstream in { "이상한 나라의 앨리스.txt" };
     if(!in) {
@@ -57,10 +34,22 @@ int main() {
         s.insert(temp);
     }
 
-    for(const String& word : s) {
-        cout << word << endl;
+    cout << "읽은 단어 수 - " << s.size() << endl;        // 26626
+
+
+    // [문제] 찾는 단어가 set에 있는지 알려준다.
+    while(true) {
+        cout << "찾을 단어는? ";
+        String word;
+        cin >> word;
+
+        if(s.contains(word)) {
+            cout << word << "는 앨리스에 있는 단어입니다." << endl;
+        }
+        else {
+            cout << "그런 단어 없습니다." << endl;
+        }
     }
-    cout << "읽은 단어 수 - " << s.size() << endl;        // 2948
 
     //save("stl.cpp");
 }
