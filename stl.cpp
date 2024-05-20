@@ -22,26 +22,29 @@ extern bool 관찰;
 
 struct Lambda {
     bool operator()(const String& s1, const String& s2) const {
-        return s1.getLen() < s2.getLen();
+        if(isupper(*s1.begin())) {
+            if(isupper(*s2.begin())) {
+                return s1.getLen() < s2.getLen();
+            }
+            else {
+                return true;
+            }
+        }
+        else {
+            if(isupper(*s2.begin())) {
+                return false;
+            }
+            else {
+                return s1.getLen() < s2.getLen();
+            }
+        }
     }
 };
-
-bool compareLength(const String& s1, const String& s2) {    // predicate
-    //return s1.getLen() < s2.getLen();
-    if(s1.getLen() < s2.getLen()) {
-        return true;
-    }
-    else if(s1.getLen() > s2.getLen()) {
-        return false;
-    }
-
-    return s1 < s2;
-}
 
 
 int main() {
     // [문제] "이상한 나라의 앨리스.txt" 파일에 있는 단어를 set에 읽어 와라.
-    // set은 단어길이기준 오름차순으로 정렬해야 한다.
+    // set은 대문자로 시작하는 단어가 먼저 나와야 한다. 
     multiset<String, Lambda> s;
 
     ifstream in { "이상한 나라의 앨리스.txt" };
