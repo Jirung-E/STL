@@ -39,21 +39,23 @@ int main() {
 
 
     // [문제] 찾는 단어가 일부라도 포함된 단어를 중복 없이 모두 출력하라.
-    set<String> copy { s.begin(), s.end() };
     while(true) {
         cout << "찾을 단어는? ";
         String word;
         cin >> word;
 
-        for(const String& w : copy) {
+        set<String> found;
+        for(const String& w : s) {
             auto p = search(w.begin(), w.end(), word.begin(), word.end());
             if(p != w.end()) {
-                cout << w << ' ';
+                found.insert(w);
             }
         }
-        // 검색의 횟수가 줄어들어서 방법1보다 더 좋아보인다
 
-        cout << endl;
+        for(const String& w : found) {
+            cout << w << ' ';
+        }
+        cout << endl << endl;
     }
 
     //save("stl.cpp");
