@@ -48,13 +48,13 @@ int main() {
         for(const String& w : s) {
             auto p = search(w.begin(), w.end(), word.begin(), word.end());
             if(p != w.end()) {
+                if(!found.contains(w)) {
+                    cout << w << ' ';
+                }
                 found.insert(w);
             }
         }
 
-        for(const String& w : found) {
-            cout << w << ' ';
-        }
         cout << endl;
     }
 
