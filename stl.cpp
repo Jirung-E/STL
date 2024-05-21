@@ -38,7 +38,7 @@ int main() {
     cout << "읽은 단어 수 - " << s.size() << endl;        // 26626
 
 
-    // [문제] 찾는 단어가 일부라도 포함된 단어를 모두 출력하라.
+    // [문제] 찾는 단어가 일부라도 포함된 단어를 중복 없이 모두 출력하라.
     while(true) {
         cout << "찾을 단어는? ";
         String word;
@@ -47,7 +47,7 @@ int main() {
         for(const String w : s) {
             auto p = search(w.begin(), w.end(), word.begin(), word.end());
             if(p != w.end()) {
-                cout << w << endl;
+                cout << w << ' ';
             }
         }
     }

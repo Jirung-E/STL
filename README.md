@@ -322,4 +322,5 @@ uniqueness는 equivalence 관계를 이용하여 결정한다.
 
 
 ## 12주차 - 05/21
-`includes`  
+`search`  
+`includes`(정렬되어있을시)  
