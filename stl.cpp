@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------
-// 2024 1학기 STL  월910화78        5월 20일 월요일                           (12주1)
+// 2024 1학기 STL  월910화78        5월 21일 화요일                           (12주2)
 // 
 // Associative Container - set 
 // set은 unique한 key값을 정렬 상태로 유지한다.
@@ -11,6 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include <set>
+#include <algorithm>
 
 #include "String.h"
 #include "save.h"
@@ -37,17 +38,17 @@ int main() {
     cout << "읽은 단어 수 - " << s.size() << endl;        // 26626
 
 
-    // [문제] 찾는 단어가 set에 있는지 알려준다.
+    // [문제] 찾는 단어가 일부라도 포함된 단어를 모두 출력하라.
     while(true) {
         cout << "찾을 단어는? ";
         String word;
         cin >> word;
 
-        if(s.contains(word)) {
-            cout << word << "는 앨리스에 있는 단어입니다." << endl;
-        }
-        else {
-            cout << "그런 단어 없습니다." << endl;
+        for(const String w : s) {
+            auto p = search(w.begin(), w.end(), word.begin(), word.end());
+            if(p != w.end()) {
+                cout << w << endl;
+            }
         }
     }
 

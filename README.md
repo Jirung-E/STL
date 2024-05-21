@@ -319,3 +319,7 @@ Associative Container - set
 set은 unique한 key값을 정렬 상태로 유지한다.  
 uniqueness는 equivalence 관계를 이용하여 결정한다.  
 
+
+
+## 12주차 - 05/21
+`includes`  
