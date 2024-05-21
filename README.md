@@ -324,3 +324,13 @@ uniqueness는 equivalence 관계를 이용하여 결정한다.
 ## 12주차 - 05/21
 `search`  
 `includes`(정렬되어있을시)  
+
+- 찾는 단어가 있니?                    --> `contains`
+- 찾는 단어가 있으면 알려줘             --> `find`
+- 찾는 단어가 있으면 몇 개나 있니?       --> `count`  
+  컴파일러와 무관하게 --> equal_range로 같은 일을 할 수 있다. operator==이 필요없다.  
+  > `count`특: equivalence랑 equality 둘다 체크한다.  
+  > vs특: 이 안에서 `euqal_range`를 사용해서 계산. 리니어하게 찾지 않는다.  
+
+`lower_bound(key)`: `key`가 들어갈 수 있는 begin()  
+`upper_bound(key)`: `key`가 들어갈 수 있는 end()  

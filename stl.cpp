@@ -40,25 +40,22 @@ int main() {
 
     // [문제] 
     // 1. 찾는 단어가 있니? - y/n              --> contains
-    // 2. 찾는 단어가 있으면 알려줘             --> find
-    // 3. 찾는 단어가 있으면 몇 개나 있니?      --> ?
+    // 2. 찾는 단어가 있으면 알려줘            --> find
+    // 3. 찾는 단어가 있으면 몇 개나 있니?       --> count
+    //    컴파일러와 무관하게 --> equal_range로 같은 일을 할 수 있다. operator==이 필요없다.
     while(true) {
         cout << "찾을 단어는? ";
         String word;
         cin >> word;
 
-        set<String> found;
-        for(const String& w : s) {
-            auto p = search(w.begin(), w.end(), word.begin(), word.end());
-            if(p != w.end()) {
-                found.insert(w);
-            }
+        // structured-binding을 이용하여 값을 받는다.
+        auto [하한, 상한] = s.equal_range(word);    // [b, e) 
+        if(하한 == 상한) {
+            cout << word << " - 없는 단어" << endl;
         }
-
-        for(const String& w : found) {
-            cout << w << ' ';
+        else {
+            cout << distance(하한, 상한) << "개" << endl;
         }
-        cout << endl << endl;
     }
 
     //save("stl.cpp");
