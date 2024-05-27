@@ -12,7 +12,6 @@
 #include <fstream>
 #include <map>
 #include <algorithm>
-#include <vector>
 
 #include "String.h"
 #include "save.h"
@@ -47,16 +46,16 @@ int main() {
         cout << alpha << " - " << num << endl;
     }
 
-    // [문제] 개수 내림차순으로 출력하라.
     cout << endl << endl;
 
-    vector<pair<char, int>> v { m.begin(), m.end() };
+    // [문제] 개수 내림차순으로 출력하라.
+    map<int, char, greater<int>> icm;
 
-    sort(v.begin(), v.end(), [](const pair<char, int>& e1, const pair<char, int>& e2) {
-        return e1.second > e2.second;
-    });
+    for(const auto& [alpha, num] : m) {
+        icm[num] = alpha;
+    }
 
-    for(const auto& [alpha, num] : v) {
+    for(const auto& [num, alpha] : icm) {
         cout << alpha << " - " << num << endl;
     }
 
