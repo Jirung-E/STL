@@ -355,3 +355,13 @@ map<int, char, greater<int>> icm;
 
 normal분포: 중앙값들이 가장 많고, 양 끝 값은 적다  
 uniform분포: 모든값이 출현빈도가 같다.  
+
+**Unordered Associative container**
+- unordered?
+- 메모리 구조?
+- 내가 만든 String도 관리 가능?
+
+hasher에 키를 넣으면 bucket번호? 를 알려준다  
+bucket은 vector로, bucket에 들어있는 값들은(unordered_multi***) list로  
+
+메모리를 많이 쓰는 대신 시간상의 이득을 얻는다. 

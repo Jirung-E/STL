@@ -1,16 +1,16 @@
 // --------------------------------------------------------------------------------
 // 2024 1학기 STL  월910화78        5월 27일 월요일                           (13주1)
 // 
-// Associative Container - map -> dictionary
-// 
-// map -> 연관배열(인덱스가 int가 아닌 배열)처럼 사용할 수 있다. 
+// Unordered Associative container
+// - unordered?
+// - 메모리 구조?
+// - 내가 만든 String도 관리 가능?
 // 
 // 6월 11일 화요일(15주2) - 기말시험
 // --------------------------------------------------------------------------------
 
 #include <iostream>
-#include <map>
-#include <random>
+#include <unordered_set>
 
 #include "String.h"
 #include "save.h"
@@ -20,25 +20,16 @@ using namespace std;
 extern bool 관찰;
 
 
-default_random_engine dre;
-normal_distribution nd { 0.0, 0.2 };
-
-
 int main() {
-    // 노멀분포는 정말 노멀한가?
-    // 값을 20등분해서 출현횟수를 출력하라.
-    map<int, int> freq;
+    unordered_set<int> us { 3, 1, 4, 2 };
 
-    for(int i=0; i<100'000; ++i) {
-        double val = nd(dre) * 50'000 + 50'000;
-        if(0 < val && val < 100'000) {
-            freq[val/5'000]++;
-        }
-    }
+    us.insert(7);
+    us.insert(10);
 
-    for(const auto& [n, cnt] : freq) {
-        cout << n << " - " << cnt << endl;
+    for(int n : us) {
+        cout << n << ' ';
     }
+    cout << endl;
 
     //save("stl.cpp");
 }
