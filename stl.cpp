@@ -37,11 +37,11 @@ int main() {
         Sim[s]++;
     }
 
-    for(const auto& [word, num] : Sim) {
-        cout << word << " - " << num << endl;
-    }
+    //for(const auto& [word, num] : Sim) {
+    //    cout << word << " - " << num << endl;
+    //}
 
-    cout << endl << endl;
+    //cout << endl << endl;
 
     // [문제] 많이 사용된 단어 순으로 출력하라
     multimap<int, String> copy;
@@ -49,7 +49,7 @@ int main() {
         copy.insert(make_pair(num, word));
     }
 
-    for(const auto& [num, word] : copy | views::reverse) {
+    for(const auto& [num, word] : copy | views::reverse | views::take(200)) {
         cout << word << " - " << num << endl;
     }
 
