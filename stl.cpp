@@ -12,6 +12,7 @@
 #include <fstream>
 #include <map>
 #include <algorithm>
+#include <ranges>
 
 #include "String.h"
 #include "save.h"
@@ -55,8 +56,8 @@ int main() {
         icm[num] = alpha;
     }
 
-    for(auto it=icm.rbegin(); it!=icm.rend(); ++it) {
-        cout << it->second << " - " << it->first << endl;
+    for(const auto& [num, alpha] : icm | views::reverse) {
+        cout << alpha << " - " << num << endl;
     }
 
     //save("stl.cpp");
