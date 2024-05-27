@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------
-// 2024 1학기 STL  월910화78        5월 21일 화요일                           (12주2)
+// 2024 1학기 STL  월910화78        5월 27일 월요일                           (13주1)
 // 
 // Associative Container - map -> dictionary
 // 
@@ -11,7 +11,8 @@
 #include <iostream>
 #include <fstream>
 #include <map>
-#include <list>
+#include <algorithm>
+#include <vector>
 
 #include "String.h"
 #include "save.h"
@@ -22,28 +23,41 @@ extern bool 관찰;
 
 
 int main() {
-    // 그룹과 멤버
-    map<String, list<String>> m { 
-        { "아이브", { "안유진", "가을", "레이", "장원영", "리즈", "이서" } }
-    };
+    // [문제] "이상한 나라의 앨리스.txt"파일을 한 번 읽어서
+    // 소문자와 출현 횟수를 다음과 같은 형식으로 출력하라
+    // a - 314
+    // b - 216
+    // ...
+    // z - 10
 
-    m.insert(pair<String, list<String>> { 
-        "블랙핑크", { "지수", "제니", "로제", "리사" }
-    });
-    
-    m.insert(make_pair(
-        "아이유", list<String> { "아이유" }
-    ));
+    ifstream in { "이상한 나라의 앨리스.txt" };
+    if(not in) {
+        return 0;
+    }
 
-    m["르세라핌"] = { "사쿠라", "김채원", "허윤진", "카즈하", "홍은채" };
-
-    // 전체 출력
-    for(const auto& [group, members] : m) {
-        cout << group << " - " << members.size() << "명" << endl;
-        for(const String& member : members) {
-            cout << member << ' ';
+    map<char, int> m;
+    char c;
+    while(in >> c) {
+        if(isalpha(c)) {
+            m[tolower(c)]++;
         }
-        cout << endl << endl;
+    }
+
+    for(const auto& [alpha, num] : m) {
+        cout << alpha << " - " << num << endl;
+    }
+
+    // [문제] 개수 내림차순으로 출력하라.
+    cout << endl << endl;
+
+    vector<pair<char, int>> v { m.begin(), m.end() };
+
+    sort(v.begin(), v.end(), [](const pair<char, int>& e1, const pair<char, int>& e2) {
+        return e1.second > e2.second;
+    });
+
+    for(const auto& [alpha, num] : v) {
+        cout << alpha << " - " << num << endl;
     }
 
     //save("stl.cpp");
