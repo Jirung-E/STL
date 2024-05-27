@@ -350,3 +350,8 @@ auto [key, value] : map
 ```cpp
 map<int, char, greater<int>> icm;
 ```
+
+`mt19937`: 19937개의 비트를 이용해서 랜덤숫자 생성?  
+
+normal분포: 중앙값들이 가장 많고, 양 끝 값은 적다  
+uniform분포: 모든값이 출현빈도가 같다.  

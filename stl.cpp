@@ -9,10 +9,8 @@
 // --------------------------------------------------------------------------------
 
 #include <iostream>
-#include <fstream>
 #include <map>
-#include <algorithm>
-#include <ranges>
+#include <random>
 
 #include "String.h"
 #include "save.h"
@@ -22,35 +20,20 @@ using namespace std;
 extern bool 관찰;
 
 
+default_random_engine dre;
+uniform_int_distribution uid { 1, 99'999 };
+
+
 int main() {
-    // [문제] "이상한 나라의 앨리스.txt"파일을 한 번 읽어서
-    // 단어와 출현횟수를 출력하라.
-
-    ifstream in { "이상한 나라의 앨리스.txt" };
-    if(not in) {
-        return 0;
+    // 유니폼분포는 정말 유니폼한가?
+    // 값을 10등분해서 출현횟수를 출력하라.
+    map<int, int> freq;
+    for(int i=0; i<1'000'000; ++i) {
+        freq[uid(dre)/10'000]++;
     }
 
-    map<String, int> Sim;
-    String s;
-    while(in >> s) {
-        Sim[s]++;
-    }
-
-    //for(const auto& [word, num] : Sim) {
-    //    cout << word << " - " << num << endl;
-    //}
-
-    //cout << endl << endl;
-
-    // [문제] 많이 사용된 단어 순으로 출력하라
-    multimap<int, String> copy;
-    for(const auto& [word, num] : Sim) {
-        copy.insert(make_pair(num, word));
-    }
-
-    for(const auto& [num, word] : copy | views::reverse | views::take(200)) {
-        cout << word << " - " << num << endl;
+    for(const auto& [n, cnt] : freq) {
+        cout << n << " - " << cnt << endl;
     }
 
     //save("stl.cpp");
