@@ -24,40 +24,33 @@ extern bool 관찰;
 
 int main() {
     // [문제] "이상한 나라의 앨리스.txt"파일을 한 번 읽어서
-    // 소문자와 출현 횟수를 다음과 같은 형식으로 출력하라
-    // a - 314
-    // b - 216
-    // ...
-    // z - 10
+    // 단어와 출현횟수를 출력하라.
 
     ifstream in { "이상한 나라의 앨리스.txt" };
     if(not in) {
         return 0;
     }
 
-    map<char, int> m;
-    char c;
-    while(in >> c) {
-        if(isalpha(c)) {
-            m[tolower(c)]++;
-        }
+    map<String, int> Sim;
+    String s;
+    while(in >> s) {
+        Sim[s]++;
     }
 
-    for(const auto& [alpha, num] : m) {
-        cout << alpha << " - " << num << endl;
+    for(const auto& [word, num] : Sim) {
+        cout << word << " - " << num << endl;
     }
 
     cout << endl << endl;
 
-    // [문제] 개수 내림차순으로 출력하라.
-    map<int, char> icm;
-
-    for(const auto& [alpha, num] : m) {
-        icm[num] = alpha;
+    // [문제] 많이 사용된 단어 순으로 출력하라
+    multimap<int, String> copy;
+    for(const auto& [word, num] : Sim) {
+        copy.insert(make_pair(num, word));
     }
 
-    for(const auto& [num, alpha] : icm | views::reverse) {
-        cout << alpha << " - " << num << endl;
+    for(const auto& [num, word] : copy | views::reverse) {
+        cout << word << " - " << num << endl;
     }
 
     //save("stl.cpp");
