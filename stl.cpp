@@ -21,15 +21,19 @@ extern bool 관찰;
 
 
 default_random_engine dre;
-uniform_int_distribution uid { 1, 99'999 };
+normal_distribution nd { 0.0, 0.2 };
 
 
 int main() {
-    // 유니폼분포는 정말 유니폼한가?
-    // 값을 10등분해서 출현횟수를 출력하라.
+    // 노멀분포는 정말 노멀한가?
+    // 값을 20등분해서 출현횟수를 출력하라.
     map<int, int> freq;
-    for(int i=0; i<1'000'000; ++i) {
-        freq[uid(dre)/10'000]++;
+
+    for(int i=0; i<100'000; ++i) {
+        double val = nd(dre) * 50'000 + 50'000;
+        if(0 < val && val < 100'000) {
+            freq[val/5'000]++;
+        }
     }
 
     for(const auto& [n, cnt] : freq) {
