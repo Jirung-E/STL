@@ -49,14 +49,14 @@ int main() {
     cout << endl << endl;
 
     // [문제] 개수 내림차순으로 출력하라.
-    map<int, char, greater<int>> icm;
+    map<int, char> icm;
 
     for(const auto& [alpha, num] : m) {
         icm[num] = alpha;
     }
 
-    for(const auto& [num, alpha] : icm) {
-        cout << alpha << " - " << num << endl;
+    for(auto it=icm.rbegin(); it!=icm.rend(); ++it) {
+        cout << it->second << " - " << it->first << endl;
     }
 
     //save("stl.cpp");
