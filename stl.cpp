@@ -1,17 +1,23 @@
 // --------------------------------------------------------------------------------
 // 2024 1학기 STL  월910화78        5월 28일 화요일                           (13주2)
 // 
-// Unordered Associative container
-// - unordered?
-// - 메모리 구조?
-// - 내가 만든 String도 관리 가능?
+// 컨테이너의 찾기 성능 비교
+// 0. vector                걸린시간 - 111034ms     100000에서 63170개를 찾음
+// 1. vector(sorted)        걸린시간 - 53ms         100000에서 63170개를 찾음
+// 2. set                   걸린시간 - 228ms        100000에서 63170개를 찾음
+// 3. unordered_set         걸린시간 - 6ms          100000에서 63170개를 찾음
 // 
 // 6월 11일 화요일(15주2) - 기말시험
 // --------------------------------------------------------------------------------
 
 #include <iostream>
+#include <array>
+#include <vector>
+#include <set>
 #include <unordered_set>
-#include <print>
+#include <algorithm>
+#include <random>
+#include <chrono>
 
 #include "String.h"
 #include "save.h"
@@ -21,39 +27,110 @@ using namespace std;
 extern bool 관찰;
 
 
-struct 해쉬 {
-    size_t operator()(const String& s) const {
-        // String s를 std::string으로 변환
-        // 그러면 std::string의 hash값을 알려주는 함수를 사용할 수 있다. 
-        return hash<string>()({ s.begin(), s.end() });      // TODO: stringview를 이용해보자
-    }
-};
+const int NUM = 1000'0000;
+const int FNUM =  10'0000;
 
+array<int, NUM> a;
+array<int, FNUM> fa;
 
-void print_us(const unordered_multiset<String, 해쉬>& us) {
-    for(int i=0; i<us.bucket_count(); ++i) {
-        print("[{:3}] ", i);
-        for(auto p=us.begin(i); p!=us.end(i); ++p) {
-            cout << " - " << *p;
-        }
-        cout << endl;
-    }
-    cout << endl;
-}
+default_random_engine dre;
+uniform_int_distribution uid { 1, NUM };
 
 
 int main() {
-    unordered_multiset<String, 해쉬> us { "2024년", "5월", "28일", "재미있는STL" };
+    for(int& num : a) {
+        num = uid(dre);
+    }
 
-    while(true) {
-        cout << endl;
-        print_us(us);
+    for(int& num : fa) {
+        num = uid(dre);
+    }
+
+    {
+        // 정렬한 벡터에서 찾기
+        cout << "정렬한 벡터 준비중...";
+        vector<int> v;
+        v.reserve(NUM);
+        v = { a.begin(), a.end() };
+        sort(v.begin(), v.end());
         cout << endl;
 
-        cout << "추가할 데이터?: ";
-        String s;
-        cin >> s;
-        us.insert(s);
+        int cnt { };
+
+        auto start = chrono::high_resolution_clock::now();
+
+        for(int num : fa) {
+            bool b = binary_search(v.begin(), v.end(), num);
+            if(b) {
+                ++cnt;
+            }
+        }
+
+        auto end = chrono::high_resolution_clock::now();
+
+        auto elapsed = end - start;
+        auto et = chrono::duration_cast<chrono::milliseconds>(elapsed);
+        cout << "걸린시간 - "<< et << endl;
+
+        cout << FNUM << "에서 " << cnt << "개를 찾음" << endl;
+    }
+
+    cout << endl;
+
+    {
+        // 멀티셋에서 찾기
+        cout << "멀티셋 준비중...";
+        multiset<int> s { a.begin(), a.end() };
+        cout << endl;
+
+        int cnt { };
+
+        auto start = chrono::high_resolution_clock::now();
+
+        for(int num : fa) {
+            bool b = s.contains(num);
+            if(b) {
+                ++cnt;
+            }
+        }
+
+        auto end = chrono::high_resolution_clock::now();
+
+        auto elapsed = end - start;
+        auto et = chrono::duration_cast<chrono::milliseconds>(elapsed);
+        cout << "걸린시간 - "<< et << endl;
+
+        cout << FNUM << "에서 " << cnt << "개를 찾음" << endl;
+    }
+
+    cout << endl;
+
+    {
+        // unordered멀티셋에서 찾기
+        cout << "unordered멀티셋 준비중...";
+        unordered_multiset<int> s;
+        s.reserve(NUM);
+        s = { a.begin(), a.end() };
+        cout << endl;
+
+        int cnt { };
+
+        auto start = chrono::high_resolution_clock::now();
+
+        for(int num : fa) {
+            bool b = s.contains(num);
+            if(b) {
+                ++cnt;
+            }
+        }
+
+        auto end = chrono::high_resolution_clock::now();
+
+        auto elapsed = end - start;
+        auto et = chrono::duration_cast<chrono::milliseconds>(elapsed);
+        cout << "걸린시간 - "<< et << endl;
+
+        cout << FNUM << "에서 " << cnt << "개를 찾음" << endl;
     }
 
     //save("stl.cpp");
