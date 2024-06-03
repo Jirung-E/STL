@@ -1,23 +1,14 @@
 // --------------------------------------------------------------------------------
-// 2024 1학기 STL  월910화78        5월 28일 화요일                           (13주2)
+// 2024 1학기 STL  월910화78        6월 03일 월요일                           (14주1)
 // 
-// 컨테이너의 찾기 성능 비교
-// 0. vector                걸린시간 - 111034ms     100000에서 63170개를 찾음
-// 1. vector(sorted)        걸린시간 - 53ms         100000에서 63170개를 찾음
-// 2. set                   걸린시간 - 228ms        100000에서 63170개를 찾음
-// 3. unordered_set         걸린시간 - 6ms          100000에서 63170개를 찾음
+// 
 // 
 // 6월 11일 화요일(15주2) - 기말시험
 // --------------------------------------------------------------------------------
 
 #include <iostream>
 #include <array>
-#include <vector>
-#include <set>
-#include <unordered_set>
 #include <algorithm>
-#include <random>
-#include <chrono>
 
 #include "String.h"
 #include "save.h"
@@ -27,110 +18,31 @@ using namespace std;
 extern bool 관찰;
 
 
-const int NUM = 1000'0000;
-const int FNUM =  10'0000;
-
-array<int, NUM> a;
-array<int, FNUM> fa;
-
-default_random_engine dre;
-uniform_int_distribution uid { 1, NUM };
+template <class Iter, class Pred>
+bool my_all_of(const Iter& first, const Iter& last, Pred pred) {
+    for(auto it=first; it!=last; ++it) {
+        if(!pred(*it)) {
+            return false;
+        }
+    }
+    return true;
+}
 
 
 int main() {
-    for(int& num : a) {
-        num = uid(dre);
+    array<int, 5> a { 1, 3, 5, 7, 9 };
+
+    // [문제] a의 원소가 모두 홀수인가? 검사하고 출력하라.
+    
+    bool is_odd = my_all_of(a.begin(), a.end(), [](int n) {
+        return n & 1;
+    });
+
+    if(is_odd) {
+        cout << "모두 홀수" << endl;
     }
-
-    for(int& num : fa) {
-        num = uid(dre);
-    }
-
-    {
-        // 정렬한 벡터에서 찾기
-        cout << "정렬한 벡터 준비중...";
-        vector<int> v;
-        v.reserve(NUM);
-        v = { a.begin(), a.end() };
-        sort(v.begin(), v.end());
-        cout << endl;
-
-        int cnt { };
-
-        auto start = chrono::high_resolution_clock::now();
-
-        for(int num : fa) {
-            bool b = binary_search(v.begin(), v.end(), num);
-            if(b) {
-                ++cnt;
-            }
-        }
-
-        auto end = chrono::high_resolution_clock::now();
-
-        auto elapsed = end - start;
-        auto et = chrono::duration_cast<chrono::milliseconds>(elapsed);
-        cout << "걸린시간 - "<< et << endl;
-
-        cout << FNUM << "에서 " << cnt << "개를 찾음" << endl;
-    }
-
-    cout << endl;
-
-    {
-        // 멀티셋에서 찾기
-        cout << "멀티셋 준비중...";
-        multiset<int> s { a.begin(), a.end() };
-        cout << endl;
-
-        int cnt { };
-
-        auto start = chrono::high_resolution_clock::now();
-
-        for(int num : fa) {
-            bool b = s.contains(num);
-            if(b) {
-                ++cnt;
-            }
-        }
-
-        auto end = chrono::high_resolution_clock::now();
-
-        auto elapsed = end - start;
-        auto et = chrono::duration_cast<chrono::milliseconds>(elapsed);
-        cout << "걸린시간 - "<< et << endl;
-
-        cout << FNUM << "에서 " << cnt << "개를 찾음" << endl;
-    }
-
-    cout << endl;
-
-    {
-        // unordered멀티셋에서 찾기
-        cout << "unordered멀티셋 준비중...";
-        unordered_multiset<int> s;
-        s.reserve(NUM);
-        s = { a.begin(), a.end() };
-        cout << endl;
-
-        int cnt { };
-
-        auto start = chrono::high_resolution_clock::now();
-
-        for(int num : fa) {
-            bool b = s.contains(num);
-            if(b) {
-                ++cnt;
-            }
-        }
-
-        auto end = chrono::high_resolution_clock::now();
-
-        auto elapsed = end - start;
-        auto et = chrono::duration_cast<chrono::milliseconds>(elapsed);
-        cout << "걸린시간 - "<< et << endl;
-
-        cout << FNUM << "에서 " << cnt << "개를 찾음" << endl;
+    else {
+        cout << "모두가 홀수인것은 아니다." << endl;
     }
 
     //save("stl.cpp");

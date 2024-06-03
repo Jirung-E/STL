@@ -382,3 +382,13 @@ flat_set을 쓰면 된다?
 
 flat_set은 Container adapter.  
 근데.. 아직 구현이 안됐다...  
+
+
+
+## 14주차 - 06/03
+`reduce`: `accumulate`와 비슷하다. 근데 병렬로 처리 가능  
+
+function signature  
+function prototype  
+function declaration  
+다 같은말  
