@@ -9,6 +9,8 @@
 #include <iostream>
 #include <array>
 #include <algorithm>
+#include <numeric>
+#include <random>
 
 #include "String.h"
 #include "save.h"
@@ -18,33 +20,16 @@ using namespace std;
 extern bool 관찰;
 
 
-template <class Iter, class Pred>
-bool my_all_of(Iter first, Iter last, Pred pred) {
-    while(first != last) {
-        if(not pred(*first)) {
-            return false;
-        }
-        ++first;
-    }
-    return true;
-}
+default_random_engine dre { random_device {}() };
 
 
 int main() {
-    array<int, 5> a { 1, 3, 5, 7, 9 };
+    // [1, 46) 숫자, 이 중에 6개를 뽑아라(로또)
+    array<int, 45> a;
+    iota(a.begin(), a.end(), 1);
 
-    // [문제] a의 원소가 모두 홀수인가? 검사하고 출력하라.
-    
-    bool is_odd = my_all_of(a.begin(), a.end(), [](int n) {
-        return n & 1;
-    });
-
-    if(is_odd) {
-        cout << "홀수가 아닌것은 한개도 없다." << endl;
-    }
-    else {
-        cout << "모두가 홀수인것은 아니다." << endl;
-    }
+    cout << "이번 주 구매하실 번호입니다." << endl;
+    sample(a.begin(), a.end(), ostream_iterator<int> { cout, " " }, 6, dre);
 
     //save("stl.cpp");
 }
