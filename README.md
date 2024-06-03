@@ -399,6 +399,7 @@ UnaryPred: 단항 조건자를 뜻함
 
 
 ### 정렬 알고리즘
+복잡도에 따른 분류:
 - partition  
 - nth_element
 - partial_sort
