@@ -9,10 +9,7 @@
 #include <iostream>
 #include <array>
 #include <algorithm>
-#include <numeric>
 #include <random>
-#include <print>
-#include <thread>
 
 #include "String.h"
 #include "save.h"
@@ -24,108 +21,40 @@ extern bool 관찰;
 
 random_device rd;
 default_random_engine dre { rd() };
+uniform_int_distribution<int> uidC { 'A', 'Z' };
+uniform_int_distribution uidN { 1, 30 };
+
+
+struct Dog {
+    char c = uidC(dre);
+    int n { uidN(dre) };        // 이렇게 하는게 무슨 차이가 있는지 잘 봐라
+};
 
 
 int main() {
-    array<int, 100> a;
-    iota(a.begin(), a.end(), 1);
+    cout << "stable sort" << endl;
 
-    {
-        // 홀짝으로 분리 - partition
-        shuffle(a.begin(), a.end(), dre);
+    array<Dog, 100> dogs;
 
-        cout << "분리하기 전" << endl;
-        for(int num : a) {
-            print("{:4}", num);
-        }
-        cout << endl;
+    // [문제] dogs를 글자 오름차순으로 정렬하라
 
-        auto p = partition(a.begin(), a.end(), [](int n) { return n & 1; });
-        cout << endl;
+    sort(dogs.begin(), dogs.end(), [](const Dog& d1, const Dog& d2) {
+        return d1.c < d2.c;
+    });
 
-        cout << "홀수" << endl;
-        for(auto it=a.begin(); it!=p; ++it) {
-            print("{:4}", *it);
-        }
-        cout << endl;
-        cout << endl;
-
-        cout << "짝수" << endl;
-        for(auto it=p; it!=a.end(); ++it) {
-            print("{:4}", *it);
-        }
-        cout << endl;
-        cout << endl;
+    for(auto [c, n] : dogs) {       // structured binding
+        cout << "\t" << c << " - " << n << endl;
     }
 
-    cout << endl;
-    cout << endl;
+    cout << endl << endl;
 
-    {
-        // 30등까지와 나머지 - nth_element
-        shuffle(a.begin(), a.end(), dre);
+    stable_sort(dogs.begin(), dogs.end(), [](const Dog& d1, const Dog& d2) {
+        return d1.n < d2.n;
+    });
 
-        cout << "30등까지와 나머지로 분리하기 전" << endl;
-        for(int num : a) {
-            print("{:4}", num);
-        }
-        cout << endl;
-
-        auto nth = a.begin() + 30;
-        nth_element(a.begin(), nth, a.end());
-        
-        cout << endl;
-
-        cout << "30등까지" << endl;
-        for(auto it=a.begin(); it!=nth; ++it) {
-            print("{:4}", *it);
-        }
-        cout << endl;
-        cout << endl;
-
-        cout << "나머지" << endl;
-        for(auto it=nth; it!=a.end(); ++it) {
-            print("{:4}", *it);
-        }
-        cout << endl;
-        cout << endl;
+    for(auto [c, n] : dogs) {       // structured binding
+        cout << "\t" << c << " - " << n << endl;
     }
-
-    cout << endl;
-    cout << endl;
-
-    {
-        // 30등까지만 정렬 - partial_sort
-        shuffle(a.begin(), a.end(), dre);
-
-        cout << "30등까지만 정렬하기 전" << endl;
-        for(int num : a) {
-            print("{:4}", num);
-        }
-        cout << endl;
-
-        auto nth = a.begin() + 30;
-        partial_sort(a.begin(), nth, a.end());
-
-        cout << endl;
-
-        cout << "30등까지는 정렬됨" << endl;
-        for(auto it=a.begin(); it!=nth; ++it) {
-            print("{:4}", *it);
-        }
-        cout << endl;
-        cout << endl;
-
-        cout << "나머지" << endl;
-        for(auto it=nth; it!=a.end(); ++it) {
-            print("{:4}", *it);
-        }
-        cout << endl;
-        cout << endl;
-    }
-
-    cout << endl;
-    cout << endl;
 
     //save("stl.cpp");
 }
