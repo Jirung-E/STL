@@ -10,6 +10,7 @@
 #include <array>
 #include <algorithm>
 #include <random>
+#include <ranges>
 
 #include "String.h"
 #include "save.h"
@@ -38,19 +39,8 @@ int main() {
 
     // [문제] dogs를 글자 오름차순으로 정렬하라
 
-    sort(dogs.begin(), dogs.end(), [](const Dog& d1, const Dog& d2) {
-        return d1.c < d2.c;
-    });
-
-    for(auto [c, n] : dogs) {       // structured binding
-        cout << "\t" << c << " - " << n << endl;
-    }
-
-    cout << endl << endl;
-
-    stable_sort(dogs.begin(), dogs.end(), [](const Dog& d1, const Dog& d2) {
-        return d1.n < d2.n;
-    });
+    ranges::sort(dogs, {}, &Dog::c);
+    ranges::stable_sort(dogs, {}, &Dog::n);
 
     for(auto [c, n] : dogs) {       // structured binding
         cout << "\t" << c << " - " << n << endl;
