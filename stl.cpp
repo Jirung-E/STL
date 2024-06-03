@@ -19,11 +19,12 @@ extern bool 관찰;
 
 
 template <class Iter, class Pred>
-bool my_all_of(const Iter& first, const Iter& last, Pred pred) {
-    for(auto it=first; it!=last; ++it) {
-        if(!pred(*it)) {
+bool my_all_of(Iter first, Iter last, Pred pred) {
+    while(first != last) {
+        if(not pred(*first)) {
             return false;
         }
+        ++first;
     }
     return true;
 }
@@ -39,7 +40,7 @@ int main() {
     });
 
     if(is_odd) {
-        cout << "모두 홀수" << endl;
+        cout << "홀수가 아닌것은 한개도 없다." << endl;
     }
     else {
         cout << "모두가 홀수인것은 아니다." << endl;

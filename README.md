@@ -392,3 +392,5 @@ function signature
 function prototype  
 function declaration  
 다 같은말  
+
+UnaryPred: 단항 조건자를 뜻함
