@@ -22,21 +22,40 @@ using namespace std;
 extern bool °üÂû;
 
 
-default_random_engine dre { random_device {}() };
+random_device rd;
+default_random_engine dre { rd() };
 
 
 int main() {
-    string s { "STL - Container - Iterator - Algorithm      " };
-    
-    for(int i=0; i<10; ++i) {
-        println("");
-    }
+    array<int, 100> a;
+    iota(a.begin(), a.end(), 1);
 
-    while(true) {
-        print("{:^80}", s);
-        rotate(s.begin(), s.end()-1, s.end());
-        cout << '\r';
-        this_thread::sleep_for(100ms);
+    {
+        // È¦Â¦À¸·Î ºĞ¸® - partition
+        shuffle(a.begin(), a.end(), dre);
+
+        cout << "ºĞ¸®ÇÏ±â Àü" << endl;
+        for(int num : a) {
+            print("{:4}", num);
+        }
+        puts("");
+
+        auto p = partition(a.begin(), a.end(), [](int n) { return n & 1; });
+        cout << endl;
+
+        cout << "È¦¼ö" << endl;
+        for(auto it=a.begin(); it!=p; ++it) {
+            print("{:4}", *it);
+        }
+        puts("");
+        puts("");
+
+        cout << "Â¦¼ö" << endl;
+        for(auto it=p; it!=a.end(); ++it) {
+            print("{:4}", *it);
+        }
+        puts("");
+        puts("");
     }
 
     //save("stl.cpp");

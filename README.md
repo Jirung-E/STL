@@ -393,4 +393,14 @@ function prototype
 function declaration  
 다 같은말  
 
-UnaryPred: 단항 조건자를 뜻함
+UnaryPred: 단항 조건자를 뜻함  
+
+
+
+
+### 정렬 알고리즘
+- partition  
+- nth_element
+- partial_sort
+- sort
+- stable_sort
