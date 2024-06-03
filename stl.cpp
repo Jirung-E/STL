@@ -34,7 +34,7 @@ int main() {
 
     while(true) {
         print("{:^80}", s);
-        rotate(s.begin(), s.begin()+1, s.end());
+        rotate(s.begin(), s.end()-1, s.end());
         cout << '\r';
         this_thread::sleep_for(100ms);
     }
