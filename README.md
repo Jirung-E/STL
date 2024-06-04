@@ -435,3 +435,20 @@ is_same<
 if constexpr(...) { ... }
 ```
 
+
+
+### concept(C++20)
+```cpp
+template <class T>
+concept 숫자만 = is_integral_v<T> || is_floating_point_v<T>;
+
+template <숫자만 T>
+T add(T a, T b) {
+    return a + b;
+}
+```
+
+
+### ranges(C++20)
+- range: iterable sequence  
+- views: range를 간접적으로 표현한것?  
