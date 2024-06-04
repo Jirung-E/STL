@@ -414,3 +414,9 @@ UnaryPred: 단항 조건자를 뜻함
 
 
 `distance`  
+
+
+
+rational number: 유리수 - 비율로 나타내는 수, 분수  
+컴퓨터는 (1/3) * 3 하면 1이 나와야 하는데, 0.9999 가 나온다.  
+이걸 1과 3으로 따로 가지고 있게 하는게 rational library?  
