@@ -405,3 +405,12 @@ UnaryPred: 단항 조건자를 뜻함
 - partial_sort
 - sort
 - stable_sort
+
+
+
+
+## 14주차 - 06/04
+`copy`  
+
+
+`distance`  
