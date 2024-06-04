@@ -22,6 +22,13 @@ extern bool 관찰;
 int main() {
     list<int> v { 1, 2, 3, 4, 5 };
 
+    auto p = v.begin();
+    --p;
+
+    if(p == v.end()) {
+        cout << "이중연결리스트" << endl;
+    }
+
     // distance함수로 반복자간의 거리를 잰다.
 
     cout << distance(v.end(), v.begin());       // 1이 나온다?!
