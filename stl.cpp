@@ -24,9 +24,9 @@ T add(T a, T b) {
 
 int main() {
     // [문제] 함수 템플릿 add를 만들어 주세요
-    cout << add<int>(1, 2) << endl;
-    cout << add<float>(1.1, 2.2) << endl;
-    cout << add<string>("2024년", "6월 4일") << endl;
+    cout << add(1, 2) << endl;
+    cout << add(1.1, 2.2) << endl;
+    cout << add("2024년"s, "6월 4일"s) << endl;
 
     //save("stl.cpp");
 }
