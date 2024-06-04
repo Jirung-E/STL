@@ -30,7 +30,7 @@ int main() {
     // [문제] 함수 템플릿 add를 만들어 주세요
     cout << add(1, 2) << endl;
     cout << add(1.1, 2.2) << endl;
-    cout << add("2024년", "6월 4일") << endl;
+    //cout << add("2024년", "6월 4일") << endl;
 
     //save("stl.cpp");
 }
