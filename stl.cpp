@@ -21,11 +21,10 @@ extern bool 관찰;
 
 template<class Iter>
 long long my_distance(Iter first, Iter last) {
-    // 랜덤엑세스 반복자라면
-    if(is_same_v<typename iterator_traits<Iter>::iterator_category,       // 이게 타입이름이라는걸 알려주기 위해 typename키워드를 쓴다.
+    // C++17부터는 constexpr if로 선택적 소스코드 확장 가능
+    if constexpr(is_same_v<typename iterator_traits<Iter>::iterator_category,
         random_access_iterator_tag>) {
-        //return last - first;
-        return 뺄셈버전(first, last, random_access_iterator_tag());         // tag dispatching
+        return last - first;
     }
 
     // 아니라면
@@ -39,11 +38,13 @@ long long my_distance(Iter first, Iter last) {
 
 
 int main() {
-    list<int> v { 1, 2, 3, 4, 5 };
+    vector<int> v { 1, 2, 3, 4, 5 };
+    list<int> l { 1, 2, 3, 4, 5 };
 
     // distance함수로 반복자간의 거리를 잰다.
 
-    cout << my_distance(v.end(), v.begin());
+    cout << my_distance(v.end(), v.begin()) << endl;
+    cout << my_distance(l.end(), l.begin()) << endl;
 
     //save("stl.cpp");
 }
