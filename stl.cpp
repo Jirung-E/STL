@@ -18,7 +18,7 @@ extern bool 관찰;
 
 
 template <class T>
-concept 숫자만 = is_arithmetic_v<T>;
+concept 숫자만 = is_integral_v<T> || is_floating_point_v<T>;
 
 template <숫자만 T>
 T add(T a, T b) {
