@@ -428,3 +428,10 @@ is_same<
     random_access_iterator_tag>
     ::value
 ```
+
+
+선택적 소스코드 확장(C++17)
+```cpp
+if constexpr(...) { ... }
+```
+
