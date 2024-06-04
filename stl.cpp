@@ -19,19 +19,30 @@ using namespace std;
 extern bool 관찰;
 
 
-int main() {
-    list<int> v { 1, 2, 3, 4, 5 };
-
-    auto p = v.begin();
-    --p;
-
-    if(p == v.end()) {
-        cout << "이중연결리스트" << endl;
+template<class Iter>
+long long my_distance(Iter first, Iter last) {
+    // 랜덤엑세스 반복자라면
+    if(typeid(iterator_traits<Iter>::iterator_category).name()
+        == typeid(random_access_iterator_tag).name()) {
+        return last - first;
     }
+
+    // 아니라면
+    long long step { };
+    while(first != last) {
+        ++first;
+        ++step;
+    }
+    return step;
+}
+
+
+int main() {
+    vector<int> v { 1, 2, 3, 4, 5 };
 
     // distance함수로 반복자간의 거리를 잰다.
 
-    cout << distance(v.end(), v.begin());       // 1이 나온다?!
+    cout << my_distance(v.end(), v.begin());
 
     //save("stl.cpp");
 }
