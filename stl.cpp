@@ -22,8 +22,8 @@ extern bool 관찰;
 template<class Iter>
 long long my_distance(Iter first, Iter last) {
     // 랜덤엑세스 반복자라면
-    if(is_same<typename iterator_traits<Iter>::iterator_category,       // 이게 타입이름이라는걸 알려주기 위해 typename키워드를 쓴다.
-        random_access_iterator_tag>::value) {
+    if(is_same_v<typename iterator_traits<Iter>::iterator_category,       // 이게 타입이름이라는걸 알려주기 위해 typename키워드를 쓴다.
+        random_access_iterator_tag>) {
         return last - first;
     }
 
