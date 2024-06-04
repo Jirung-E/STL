@@ -1,12 +1,13 @@
 // --------------------------------------------------------------------------------
 // 2024 1학기 STL  월910화78        6월 04일 화요일                           (14주2)
 // 
-// 반복자간의 거리를 재는 distance함수를 잘 알아본다.
+// 
 // 
 // 6월 11일 화요일(15주2) - 기말시험
 // --------------------------------------------------------------------------------
 
 #include <iostream>
+#include <algorithm>
 
 #include "String.h"
 #include "save.h"
@@ -17,7 +18,7 @@ extern bool 관찰;
 
 
 template <class T>
-concept 숫자만 = is_integral_v<T> | is_floating_point_v<T>;
+concept 숫자만 = is_arithmetic_v<T>;
 
 template <숫자만 T>
 T add(T a, T b) {
