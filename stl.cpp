@@ -24,25 +24,8 @@ long long my_distance(Iter first, Iter last) {
     // 랜덤엑세스 반복자라면
     if(is_same_v<typename iterator_traits<Iter>::iterator_category,       // 이게 타입이름이라는걸 알려주기 위해 typename키워드를 쓴다.
         random_access_iterator_tag>) {
-        return last - first;
-    }
-
-    // 아니라면
-    long long step { };
-    while(first != last) {
-        ++first;
-        ++step;
-    }
-    return step;
-}
-
-
-template<>
-long long my_distance<list<int>::iterator>(list<int>::iterator first, list<int>::iterator last) {
-    // 랜덤엑세스 반복자라면
-    if(is_same_v<typename iterator_traits<list<int>::iterator>::iterator_category,       // 이게 타입이름이라는걸 알려주기 위해 typename키워드를 쓴다.
-        random_access_iterator_tag>) {
-        return last - first;
+        //return last - first;
+        return 뺄셈버전(first, last, random_access_iterator_tag());         // tag dispatching
     }
 
     // 아니라면
