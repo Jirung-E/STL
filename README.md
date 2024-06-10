@@ -467,6 +467,13 @@ range
 `ranges::iota`  
 `ranges::shuffle`  
 `ranges::sort`  
+  ```cpp   
+    vector<Dog> dogs(100);
+    ranges::sort(dogs, {}, &Dog::c);        // 뭐를(range), 오름차순/내림차순(predicate), 멤버변수(projection)
+    // ranges::sort(dogs, greater{}, &Dog::c); -> 내림차순, greater 대신 람다함수 해도 작동은 한다(대신 가독성이 별로다)
+  ```
 `views::counted(v.begin(), 20)`  
 `views::filter(v, [](int n) { return n & 1; })`  
 `views::iota(1)` -> 무한대  
+
+niebloid?  
