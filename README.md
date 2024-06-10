@@ -477,3 +477,8 @@ range
 `views::iota(1)` -> 무한대  
 
 niebloid?  
+
+
+range algorithm - applied to ranges eagerly(즉시)  
+range adaptors - applied to views lazily(지연)  
+지연평가(lazy evaluation)?  
