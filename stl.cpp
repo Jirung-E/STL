@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------
-// 2024 1학기 STL  월910화78        6월 04일 화요일                           (14주2)
+// 2024 1학기 STL  월910화78        6월 10일 월요일                           (15주1)
 // 
 // 
 // 
@@ -8,6 +8,11 @@
 
 #include <iostream>
 #include <algorithm>
+#include <vector>
+#include <random>
+#include <numeric>
+#include <ranges>
+#include <print>
 
 #include "String.h"
 #include "save.h"
@@ -17,20 +22,31 @@ using namespace std;
 extern bool 관찰;
 
 
-template <class T>
-concept 숫자만 = is_integral_v<T> || is_floating_point_v<T>;
-
-template <숫자만 T>
-T add(T a, T b) {
-    return a + b;
-}
+default_random_engine dre;
 
 
 int main() {
-    // [문제] 함수 템플릿 add를 만들어 주세요
-    cout << add(1, 2) << endl;
-    cout << add(1.1, 2.2) << endl;
-    //cout << add("2024년", "6월 4일") << endl;
+    vector<int> v(100);
+    //iota(v.begin(), v.end(), 1);
+    ranges::iota(v, 1);     // constrained-algorithm    ->   concept을 이용해서 제약
+
+    ranges::shuffle(v, dre);
+
+    for(int num : v) {
+        print("{:4}", num);
+    }
+    cout << endl << endl;
+
+    ranges::sort(v);
+
+    for(int num : v) {
+        print("{:4}", num);
+    }
+    cout << endl << endl;
+
+    for(int num : views::counted(v.begin(), 20)) {
+        print("{:4}", num);
+    }
 
     //save("stl.cpp");
 }

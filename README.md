@@ -452,3 +452,19 @@ T add(T a, T b) {
 ### ranges(C++20)
 - range: iterable sequence  
 - views: range를 간접적으로 표현한것?  
+
+
+
+
+
+## 15주차 - 06/10
+range
+- [begin, end)
+- begin + size
+- [begin, predicate)
+- [begin, ...)
+
+`ranges::iota`  
+`ranges::shuffle`  
+`ranges::sort`  
+`views::counted(v.begin(), 20)`  
