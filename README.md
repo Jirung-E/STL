@@ -496,3 +496,23 @@ range adaptors - applied to views lazily(지연)
         | views::reverse
         | views::filter([](int n) { return n & 1; });
 ```
+
+
+
+ADL(Argument Dependent Lookup)  
+- 함수 호출시 인자의 타입에 따라 함수를 찾는 것
+  ```cpp
+  using namespace std;
+  using namespace ranges;
+
+  find(v.begin(), v.end(), 3);
+  ```
+  에서, find가 어디있는지 모르겠을때 v.begin이 정의된곳을 찾아본다.  
+  알아도 v.begin이 정의된곳의 것을 가져다 사용한다.
+  그래서 ranges::find가 아니라 std::find가 호출된다.  
+
+  그래서 ranges::find는 클래스로 작성되어있다.  
+  Customization Point Object(CPO)  
+  niebloid  
+  원래 똑같은 이름을 가진 함수가 있어서 이렇게 만들었다..  
+  
