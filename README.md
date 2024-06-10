@@ -469,3 +469,4 @@ range
 `ranges::sort`  
 `views::counted(v.begin(), 20)`  
 `views::filter(v, [](int n) { return n & 1; })`  
+`views::iota(1)` -> ¹«ÇÑ´ë  

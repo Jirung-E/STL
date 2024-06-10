@@ -44,8 +44,8 @@ int main() {
     }
     cout << endl << endl;
 
-    for(int num : views::filter(v, [](int n) { return n & 1; })) {
-        print("{:4}", num);
+    for(int num : views::iota(1)) {
+        print("{:4} ", num);
     }
 
     //save("stl.cpp");
