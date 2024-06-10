@@ -7,8 +7,10 @@
 // --------------------------------------------------------------------------------
 
 #include <iostream>
+#include <vector>
 #include <ranges>
 #include <print>
+#include <chrono>
 
 #include "String.h"
 #include "save.h"
@@ -19,6 +21,17 @@ extern bool °üÂû;
 
 
 int main() {
+    auto start = chrono::system_clock::now();
+    vector<int> v = ranges::to<vector>(views::iota(1)
+        | views::drop(10000)
+        | views::take(1'000'000));
+    auto end = chrono::system_clock::now();
+
+    cout << "elapsed time: " << chrono::duration_cast<chrono::microseconds>(end - start).count() << " micro seconds" << endl;
+
+    //for(auto n : v) {
+    //    cout << n << ' ';
+    //}
 
     //save("stl.cpp");
 }
