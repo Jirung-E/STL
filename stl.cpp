@@ -7,10 +7,6 @@
 // --------------------------------------------------------------------------------
 
 #include <iostream>
-#include <algorithm>
-#include <vector>
-#include <random>
-#include <numeric>
 #include <ranges>
 #include <print>
 
@@ -22,31 +18,26 @@ using namespace std;
 extern bool 관찰;
 
 
-default_random_engine dre;
-
-// C++20 - ranges라이브러리
-// 기존 알고리즘을 다 새로 작성함
-// - concept를 사용하여 인자를 제약하였다.
-// - projection과 pointer to member 를 사용할 수 있다.
-// - 더 풍부한 정보를 담는 return 값 제공
-
-uniform_int_distribution<int> uidC { 'a', 'z' };
-uniform_int_distribution uid { 1, 100 };
-
-struct Dog {
-    char c = uidC(dre);
-    int n { uid(dre) };
-};
-
-
 int main() {
-    vector<Dog> dogs(100);
+    // 소수(prime number)를 출력하라
+    auto 소수 = [](int n) {
+        if(n <= 1) {
+            return false;
+        }
 
-    ranges::sort(dogs, greater{}, &Dog::c);
+        for(int i=2; i<= int(sqrt(double(n))); ++i) {
+            if(0 == n % i) {
+                return false;
+            }
+        }
 
-    for(auto [글자, 숫자] : dogs) {
-        cout << 글자 << " --- " << 숫자 << endl;
+        return true;
+    };
+
+    for(int num : views::iota(1) | views::filter(소수) | views::take(100)) {
+        print("{} ", num);
     }
+    cout << endl << endl;
 
     //save("stl.cpp");
 }

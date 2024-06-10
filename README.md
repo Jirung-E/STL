@@ -464,6 +464,11 @@ range
 - [begin, predicate)
 - [begin, ...)
 
+기존 알고리즘을 다 새로 작성함
+- concept를 사용하여 인자를 제약하였다.
+- projection과 pointer to member 를 사용할 수 있다.
+- 더 풍부한 정보를 담는 return 값 제공
+
 `ranges::iota`  
 `ranges::shuffle`  
 `ranges::sort`  
@@ -482,3 +487,12 @@ niebloid?
 range algorithm - applied to ranges eagerly(즉시)  
 range adaptors - applied to views lazily(지연)  
 지연평가(lazy evaluation)?  
+
+
+```cpp
+    auto range = views::iota(1)
+        | views::drop(100)
+        | views::take(1000)
+        | views::reverse
+        | views::filter([](int n) { return n & 1; });
+```
