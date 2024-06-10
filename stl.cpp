@@ -19,7 +19,7 @@ extern bool 관찰;
 
 
 int main() {
-    // 소수(prime number)를 출력하라
+    // 10'0000보다 큰 소수(prime number) 100개를 출력하라
     auto 소수 = [](int n) {
         if(n <= 1) {
             return false;
@@ -34,7 +34,11 @@ int main() {
         return true;
     };
 
-    for(int num : views::iota(1) | views::filter(소수) | views::take(100)) {
+    for(int num : views::iota(10'0000) 
+        | views::filter(소수) 
+        | views::take(10000)
+        | views::reverse
+        ) {
         print("{} ", num);
     }
     cout << endl << endl;
