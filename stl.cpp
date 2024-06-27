@@ -84,14 +84,38 @@ int main() {
         }
         cout << p_num << endl << endl;
 
-        string word = to_find;
-        sort(word.begin(), word.end());
+        int dict[26] = {0, };
+        for(char ch : to_find) {
+            dict[ch - 'a']++;
+        }
 
-        do {
-            if(binary_search(v.begin(), v.end(), word)) {
-                cout << word << " ";
+        for(const string& s : v) {
+            int d[26] = {0, };
+            for(char ch : s) {
+                d[ch - 'a']++;
             }
-        } while(next_permutation(word.begin(), word.end()));
+
+            bool is_anagram = true;
+            for(int i=0; i<26; ++i) {
+                if(dict[i] != d[i]) {
+                    is_anagram = false;
+                    break;
+                }
+            }
+
+            if(is_anagram) {
+                cout << s << " ";
+            }
+        }
+
+        //string word = to_find;
+        //sort(word.begin(), word.end());
+
+        //do {
+        //    if(binary_search(v.begin(), v.end(), word)) {
+        //        cout << word << " ";
+        //    }
+        //} while(next_permutation(word.begin(), word.end()));
 
         cout << endl;
         cout << endl;
