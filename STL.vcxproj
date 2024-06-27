@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="2024 1학기 STL 월910화78 강의 저장.txt" />
+    <Text Include="단어들.txt" />
     <Text Include="이상한 나라의 앨리스.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
