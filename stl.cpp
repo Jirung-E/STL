@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <list>
 #include <algorithm>
 #include <ranges>
 
@@ -37,36 +38,31 @@ int main() {
 
     ranges::sort(v, less<>{}, &PS::first);
 
-    //cout << "어디서부터 출력할까요? ";
-    //int num;
-    //cin >> num;
 
-    //for(auto& [a, b] : v 
-    //    | views::drop(num)
-    //    | views::filter([](const auto& p) { return p.first.size() == 8; })
-    //    | views::take(100)
-    //) {
-    //    cout << a << " - " << b << endl;
-    //}
+    // 전체 anagram쌍을 컨테이너에 저장
+    vector<list<string>> anagrams;
 
+    auto it = v.begin();
+    int cnt { };
     while(true) {
-        cout << "찾을 단어를 입력하세요: ";
-        string s;
-        cin >> s;
+        it = adjacent_find(it, v.end(), [](const auto& a, const auto& b) {
+            return a.first == b.first;
+        });
 
-        PS word { s };
+        if(it == v.end()) break;
 
-        auto range = ranges::equal_range(v, word.first, less<>{}, & PS::first);
-        if(range.empty()) {
-            cout << "찾을 수 없습니다." << endl;
-            continue;
-        }
+        auto last = find_if_not(it+1, v.end(), [it](const auto& a) {
+            return it->first == a.first;
+        });
 
-        cout << s << "의 anagram들" << endl;
-        for(auto p : range) {
-            cout << p.second << " ";
-        }
-        cout << endl;
-        cout << endl;
+        list<string> con;
+        for_each(it, last, [&con](const auto& p) {
+            con.push_back(p.second);
+        });
+        anagrams.push_back(con);
+
+        it = last;
     }
+
+    cout << "모두 " << anagrams.size() << "개의 anagram쌍을 찾았습니다." << endl;
 }
